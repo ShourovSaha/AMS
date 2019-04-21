@@ -1,0 +1,209 @@
+﻿@model IEnumerable<AutomatedMonitoringSystem.Models.GetExamInfoSubjectWise_SP_Result>
+
+@{
+    /**/
+
+    ViewBag.Title = "Exam Result";
+}
+
+<div class="row" style="margin-top:30px;">
+    <br />
+    <div class="col-sm-8 col-sm-offset-2 ">
+        <div style="background-color:#7db5e4; padding:15px; margin-top: -4%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <div class="col-sm-12">
+
+                @if (Html.Raw(TempData["msgAlert"]).ToString() == "N")
+                {
+                    <div class="alert alert-warning alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <h4 class="text-center">@Html.Raw(TempData["msgAlertDetails"]).ToString().</h4>
+                    </div>
+
+                }
+
+                @if (Html.Raw(TempData["msgAlert"]).ToString() == "Y")
+                {
+                    <div class="alert alert-success alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <h4 class="text-center">@Html.Raw(TempData["msgAlertDetails"]).ToString().</h4>
+                    </div>
+                }
+            </div>
+            @Html.ActionLink("Student Exam Result", "GetStudentExamResult", "Exam")
+            <h3 class="lang text-center" key="examResult">Exam Result</h3>
+            @*==========================*@
+            <hr>
+            <form action="@Url.Action("GetExamResultByClassSectionShift", "Exam")" method="post" role="form">
+                <div class="">
+                    <fieldset>
+                        @*<legend>Subject Assign</legend>*@
+                        @*<div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="Roll">Roll Number:</label>
+                                <input id="Roll" type="number" name="Roll" placeholder="Student's Roll Number">
+                            </div>
+                        </div>
+                    </div>*@
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="ClassId" class="lang" key="class">Class:</label>
+                                    @Html.DropDownList("ClassId", ViewData["ClassList"] as SelectList, "--Select One--", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="SectionId" class="lang" key="classSection">Section:</label>
+                                    @Html.DropDownList("SectionId", ViewData["SectionList"] as SelectList, "--Select One--", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="SubjectId">Subject:</label>
+                                    @Html.DropDownList("SubjectId", new SelectList(" "), "--Select One--", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="ExamTypeId">Exam Type:</label>
+                                <select class="form-control" id="ExamTypeId" name="ExamTypeId" required>
+                                    <option selected disabled value="">Select Exam Type</option>
+                                    <option value="1">First Term</option>
+                                    <option value="2">Mid Term</option>
+                                    <option value="3">Final</option>
+                                    <option value="4">Class Test</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="Shift">Shift:</label>
+                                    <select class="form-control" id="Shift" name="Shift" required>
+                                        <option selected disabled value="">Select Shift</option>
+                                        <option value="Common">Common</option>
+                                        <option value="Day">Day</option>
+                                        <option value="Morning">Morning</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="Year">Year:</label>
+                                    @Html.DropDownList("Year", ViewData["YearList"] as SelectList, "--Select One--", new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <br />
+                <div class="form-group text-center">
+                    <button type="" id="btnSubmit" onclick="PeriodAssionWithTeachersSubject()" class="btn btn-primary" style="min-width:150px;"><span class=""> </span> Submit</button>
+                </div>
+            </form>
+
+        </div>
+        <br /><br />
+        <div class="" style="background-color:#82dcce; padding:15px; margin-top: -4%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            @if (Model != null)
+            {
+                <div class="panel panel-heading info">
+                    <table class="table table-striped">
+                        <tbody>
+                            @foreach (var i in Model)
+                            {
+                            <tr>
+                                <td><p>Exam Subject: @i.SubjectName</p></td>
+                            </tr>
+                                <tr>
+                                    <td><p>Exam taken on: @i.Date</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Exam taken by : @i.TeacherFName @i.TeacherLName</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Phone: @i.TeacherId</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Marks Out of: @i.MarksOutOf</p></td>>
+                                </tr>
+
+                                break;
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            }
+
+
+            <div style="">
+                <table class="table table-hover table-responsive">
+                    <tr>
+                        <th>
+                            SL No.
+                        </th>
+                        <th>
+                            Roll
+                        </th>
+                        <th>
+                            Student Name
+                        </th>
+                        <th>
+                            Phone
+                        </th>
+                        <th>
+                            Obtained Marks
+                        </th>
+                        <th>
+                            Markes Out of
+                        </th>
+                        <th>
+                            Remarks
+                        </th>
+                    </tr>
+                    @{
+                        int count = 0;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <td>@count</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Roll)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Contact1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ObtainMark)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MarksOutOf)
+                            </td>
+                            <td>
+                                @*Remarks*@
+                            </td>
+
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+        <br />
+    </div>
+
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/CustomScripts/CommonCascadingDropDown.js"></script>
+
+

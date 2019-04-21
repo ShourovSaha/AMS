@@ -1,0 +1,317 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+
+    h4 {
+        color: #f7f7f7;
+    }
+
+    h4:hover {
+        background-color: #5d629a;
+        color: #f7f7f7;
+        background-size: auto;
+    }
+</style>
+
+<div class="container" style="margin-top:25px;">
+
+    <div class="col-sm-4">
+        <div class="row">
+            @*<div style="background-color:#4087c3; height:auto; margin:10px; min-height:150px; padding:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">*@
+            <div style="background-color:#4087c3; height:auto; margin:10px; min-height:150px; padding:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <a href="~/Student/AddStudent">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <img src="~/Content/Images/createuser.png" class="img-responsive img-rounded" alt="Cinque Terre" style="width:204px;height:auto;">
+
+                        </div>
+
+                        <div class="col-xs-7 text-center">
+                            <h4>Add Student</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="row">
+            <div style="background-color:#757575; height:auto; margin:10px; min-height:150px; padding:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <a href="~/User/Adduser">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <img src="~/Content/Images/students.png" class="img-responsive img-rounded" alt="Cinque Terre" style="width:204px;height:auto;">
+
+                        </div>
+
+                        <div class="col-xs-7 text-center">
+                            <h4>Add User</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="row">
+            <div style="background-color:#757575; height:auto; margin:10px; min-height:150px; padding:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <a href="~/User/AssignUserWithStudent">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <img src="~/Content/Images/students.png" class="img-responsive img-rounded" alt="Cinque Terre" style="width:204px;height:auto;">
+
+                        </div>
+
+                        <div class="col-xs-7 text-center">
+                            <h4>Assign Gardian with Student</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="row">
+            <div style="background-color:#d63300ed; height:auto; margin:10px; min-height:150px; padding:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <a href="~/Exam/GetExamResultByClassSectionShift">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <img src="~/Content/Images/examresult.PNG" class="img-responsive img-rounded" alt="image" style="width:204px;height:auto;">
+
+                        </div>
+
+                        <div class="col-xs-7 text-center">
+                            <h4> Exam Result </h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-sm-4">
+        <div class="row">
+            <div style="background-color: #6f2727;  height:auto; margin:10px; min-height:150px; padding:15px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+
+                <a href="~/User/AssignTeacherWithSubject">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <img src="~/Content/Images/assignteacher.png" class="img-responsive img-rounded" alt="Cinque Terre" style="width:204px;height:auto;">
+
+                        </div>
+
+                        <div class="col-xs-7 text-center">
+                            <h4>Subject Assign to Teacher</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="row">
+            <div style="background-color:#a58405; height:auto; margin:10px; min-height:150px; padding:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <a href="~/User/GetTeachers">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <img src="~/Content/Images/classroutine.png" class="img-responsive img-rounded" alt="image" style="width:204px;height:auto;">
+
+                        </div>
+
+                        <div class="col-xs-7 text-center">
+                            <h4>Class Routine Assignment</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="row">
+            <div style="background-color:#5286b3; height:auto; margin:10px; min-height:150px; padding:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <a href="~/Notices/AddNotice">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <img src="~/Content/Images/notice.png" class="img-responsive img-rounded" alt="image" style="width:204px;height:auto;">
+
+                        </div>
+
+                        <div class="col-xs-7 text-center">
+                            <h4>Notice</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-sm-4">
+        <div class="row">
+            <div style="background-color:#926091;height:auto; margin:10px; min-height:150px; padding:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <a href="~/Attendance/Index">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <img src="~/Content/Images/student_attendance.jpeg" class="img-responsive img-rounded" alt="image" style="width:204px;height:auto;">
+
+                        </div>
+
+                        <div class="col-xs-7 text-center">
+                            <h4>Student Attendance</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    @*<div class="col-sm-4">
+        <div class="row">
+            <div style="background-color:#2c395a; height:auto; margin:10px; min-height:150px; padding:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <a href="~/Home/AllNotices">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <img src="~/Content/Images/ViewNotice.jfif" class="img-responsive img-rounded" alt="image" style="width:204px;height:auto;">
+
+                        </div>
+
+                        <div class="col-xs-7 text-center">
+                            <h4>View All Notice</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>*@
+
+
+    <div class="col-sm-4">
+        <div class="row">
+            <div style="background-color:#4087c3; height:auto; margin:10px; min-height:150px; padding:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <a href="~/Period/GetRoutine">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <img src="~/Content/Images/RoutineLogo.jpg" class="img-responsive img-rounded" alt="image" style="width:204px;height:auto;">
+
+                        </div>
+
+                        <div class="col-xs-7 text-center">
+                            <h4>Routine</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    @*<div class="col-sm-4">
+            <div class="row">
+                <div style="background-color:#e45a5a; height:auto; margin:10px; min-height:150px; padding:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <a href="~/Notice/GetAllNotice">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <img src="~/Content/Images/ViewNotice.jfif" class="img-responsive img-rounded" alt="image" style="width:204px;height:auto;">
+
+                            </div>
+
+                            <div class="col-xs-7 text-center">
+                                <h4> Class Details </h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>*@
+
+    @*<div class="col-sm-4">
+            <div class="row">
+                <div style="background-color:#ffffff; height:auto; margin:10px; min-height:150px; padding:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <a href="~/Home/showTeacherAssignedSubject">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <img src="~/Content/Images/notices.png" class="img-rounded" alt="Create User" style="width:100%;" />
+
+                            </div>
+
+                            <div class="col-sm-7 text-center">
+                                <h4>Search Teacher</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>*@
+
+    
+
+
+
+
+
+    @*<div class="col-sm-4">
+            <div class="row">
+                <div style="background-color:#ffffff; height:auto; margin:10px; min-height:150px; padding:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <a href="~/Home/AllNotices">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <img src="~/Content/Images/notices.png" class="img-rounded" alt="Create User" style="width:100%;" />
+
+                            </div>
+
+                            <div class="col-sm-7 text-center">
+                                <h4>View Notice</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>*@
+
+
+    @*<div class="col-sm-4">
+            <div class="row">
+                <div style="background-color:#ffffff; height:auto; margin:10px; min-height:150px; padding:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <a href="~/Home/showExamResultsByStudentId">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <img src="~/Content/Images/resultLOGO.jpg" class="img-rounded" alt="Create User" style="width:100%;" />
+
+                            </div>
+
+                            <div class="col-sm-7 text-center">
+                                <h4>Show Exam Results</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>*@
+
+
+    @*<div class="col-sm-4">
+            <div class="row">
+                <div style="background-color:#ffffff; height:auto; margin:10px; min-height:150px; padding:15px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <a href="~/Home/ShowClassRoutineByClassName">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <img src="~/Content/Images/RoutineLogo.jpg" class="img-rounded" alt="Create User" style="width:100%;" />
+
+                            </div>
+
+                            <div class="col-sm-7 text-center">
+                                <h4>Show Class Routine</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>*@
+
+</div>
+

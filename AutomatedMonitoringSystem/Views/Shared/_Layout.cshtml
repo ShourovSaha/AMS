@@ -1,0 +1,222 @@
+﻿@*=========from old project======*@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title </title>
+
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/Content/Site.css" rel="stylesheet" />*@
+    @Styles.Render("~/bundles/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
+    <style>
+
+
+        a. {
+            float: left;
+            font-size: 16px;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        a:hover {
+            background-color: #808080;
+            color: #f7f7f7;
+            background-size: auto;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            /*font-size: 12px;*/
+            font-style: initial;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("AM System", "Index", "Home", new { area = "" }, new { @class = "lang navbar-brand", @key = "amystem" })
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    <li>
+                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "lang navbar-brand", @key = "home" })
+                    </li>
+                    @*<li>@Html.ActionLink("Assignment", "Assignment", "Home")</li>*@
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Assignment<span class="caret"></span></a>
+
+                        <ul class="dropdown-menu" role="menu" style="background-color:#e1e1e1;font-size: 18px;">
+                            <li>@Html.ActionLink("Create User", "CreateUsers", "Home")</li>
+                            <li>@Html.ActionLink("Assign Child/Student", "AssignChild", "Home")</li>
+                            <li>@Html.ActionLink("Assign Teacher", "AssignClass", "Home")</li>
+                        </ul>
+
+                    </li>
+
+                    @*<li>@Html.ActionLink("Class", "Class", "Home")</li>*@
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Class<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu" style="background-color:#e1e1e1; font-size:18px; ">
+                            <li>@Html.ActionLink("Class Routine", "ClassRoutine", "Home")</li>
+                            @*<li>@Html.ActionLink("Class Details", "Index", "Home")</li>*@
+                        </ul>
+                    </li>
+
+                    @*<li>@Html.ActionLink("Notice", "Notices", "Home")</li>*@
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Notice<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu" style="background-color:#e1e1e1; font-size:18px; ">
+                            <li>@Html.ActionLink("Post Notice", "PostNotice", "Home")</li>
+                            <li>@Html.ActionLink("View Notice", "AllNotices", "Home")</li>
+
+                        </ul>
+                    </li>
+
+                    @*<li>@Html.ActionLink("Students", "Students", "Home")</li>*@
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Students<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu" style="background-color:#e1e1e1; font-size:18px; ">
+                            <li>@Html.ActionLink("Exam Result", "showExamResultsByStudentId", "Home")</li>
+                            <li>@Html.ActionLink("Student Attendence", "GetStudentAttendanceListByGroup", "Students")</li>
+                            <li>@Html.ActionLink("Search Student", "SearchStudent", "Students")</li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="lang dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown" key="language">Language<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu" style="background-color:#e1e1e1; font-size:18px; ">
+                            <li><a class="translate" id="bn"><span>বাংলা</span></a></li>
+                            <li><a class="translate" id="en"><span>English</span></a></li>
+                            @*<li><input class="translate" id="bn" value="বাংলা" /></li>
+                                <li><input class="translate" id="en" value="English" /></li>*@
+                        </ul>
+                    </li>
+
+                </ul>
+
+
+                @if (Session["LogInUserPhone"] != null)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("LogOut", "LogOut", "Security")</li>
+                        <li>@Html.ActionLink(Session["LogInUserFristName"].ToString(), "Index", "Home")</li>
+                    </ul>
+
+                }
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+
+        @RenderBody()
+        <hr />
+        <footer>
+            <p style="color: black;"> &copy; @DateTime.Now.Year - Ambitious Softwares Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+    @*@Scripts.Render("~/bundles/css")*@
+    @RenderSection("scripts", required: false)
+    @*<script src="~/Scripts/jquery-3.0.0.min.js"></script>*@
+    <script src="~/Scripts/CustomScripts/Language/MultipleLanguageResource.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            var selectedLang = "";
+
+            if (typeof (Storage) !== "undefined" && localStorage.getItem("lang") === null) {
+
+                localStorage.setItem("lang", "bn");
+                selectedLang = localStorage.getItem("lang");
+            }
+            else {
+                selectedLang = localStorage.getItem("lang");
+            }
+
+            $(".lang").each(function (index, element) {
+                $(this).text(LanguageResource[selectedLang][$(this).attr("key")]);
+            });
+        });
+    </script>
+</body>
+</html>
+@*=========from old project end======*@
+
+
+
+
+
+
+
+
+
+
+
+@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>*@

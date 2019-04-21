@@ -1,0 +1,230 @@
+﻿
+
+@model IEnumerable<AutomatedMonitoringSystem.Models.vm_GetAllStudentInfo2>
+
+@{
+    ViewBag.Title = "AssignUserWithStudent1";
+}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" />
+
+<div class="row" style="margin-top:30px;">
+    <br />
+    <div class="col-sm-8 col-sm-offset-2 ">
+        <div style="background-color:#7db5e4; padding:15px; margin-top: -4%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <div class="col-sm-12">
+
+                @if (Html.Raw(TempData["msgAlert"]).ToString() == "N")
+                {
+                    <div class="alert alert-warning alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <h4 class="text-center">@Html.Raw(TempData["msgAlertDetails"]).ToString().</h4>
+                    </div>
+
+                }
+
+                @if (Html.Raw(TempData["msgAlert"]).ToString() == "Y")
+                {
+                    <div class="alert alert-success alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <h4 class="text-center">@Html.Raw(TempData["msgAlertDetails"]).ToString().</h4>
+                    </div>
+                }
+            </div>
+
+            <h3 class="lang text-center" key="">Assign User with student</h3>
+            @*==========================*@
+            <hr>
+            <form action="@Url.Action("AssignUserWithStudent1", "User")" method="post" role="form">
+                @*<input type="hidden" name="StudentId" id="StudentId" value="@ViewBag.StudentId" />*@
+
+                <div class="">
+                    <fieldset>
+                        @if (Model.Count() != 0)
+                        {
+                            <legend>Gardian Phone Number:</legend>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="UserPhone">Phone Number:</label>
+                                        <button>+880</button>
+                                        <input id="UserPhone" type="number" name="UserPhone" placeholder="Gardian's Phone Number">
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <br />
+
+                        <br />
+                    </fieldset>
+                </div>
+                <br />
+                <div style="overflow-x:auto;">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>
+                                Sl No.
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.StudentId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FatherName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MotherName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Birthday)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PresentAddress)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PermanentAddress)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Contact1)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Contact2)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Roll)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ClassId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.SectionId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Shift)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Residential)
+                            </th>
+                            <th></th>
+                        </tr>
+                        @{
+                            int count = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tr>
+                                <td>
+                                    @count
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StudentId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FatherName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MotherName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Birthday)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PresentAddress)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PermanentAddress)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Contact1)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Contact2)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Roll)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ClassId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SectionId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Shift)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Residential)
+                                </td>
+                                <td>
+                                    <input type="button" id="" value="Select" onclick="AssignStudentWithGuardian(@item.StudentId)" />
+                                </td>
+
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" id="btnSubmit" class="btn btn-primary" style="min-width:150px;"><span class=""> </span> Submit</button>
+                </div>
+            </form>
+
+        </div>
+        <br /><br />
+        <div class="" style="background-color:#59d8f5; padding:15px; margin-top: -4%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <table id="dataTable" class="table table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th>Id/Phone</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Gender</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/CustomScripts/UserControl.js"></script>
+@*<script src="~/Scripts/CustomScripts/AutoTextSearch.js"></script>*@
+<script>
+    $(document).ready(function () {
+        $.noConflict();
+        $.ajax({
+            method: "GET",
+            url: "/User/GetAllGardian",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                $("#dataTable").dataTable({
+                    data: data,
+                    columns: [
+                        { 'data': 'UId' },
+                        { 'data': 'FirstName' },
+                        { 'data': 'LastName' },
+                        { 'data': 'Gender' },
+                        { 'data': 'Email' }
+                    ]
+                });
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+
+    });
+</script>
+</script>
+
+

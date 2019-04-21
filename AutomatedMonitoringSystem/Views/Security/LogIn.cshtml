@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutOffline.cshtml";
+}
+
+<body style="background-image: url('../../Content/Images/l5.jpg');">
+    <div class="container">
+        <div class="col-sm-4 col-sm-offset-4 ">
+            <div style="background-image: url('../../Content/Images/l1.jpg'); padding:25px; margin-top:50px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                @*<div style="background-color:#ffffff; padding:15px; margin-top:50px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">*@
+                <div class="col-sm-12">
+
+
+
+                    @if (Html.Raw(TempData["msgAlert"]).ToString() == "N")
+                    {
+                        <div class="alert alert-warning alert-dismissable">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            <h4 class="text-center">@Html.Raw(TempData["msgAlertDetails"]).ToString().</h4>
+                        </div>
+
+                    }
+
+                    @if (Html.Raw(TempData["msgAlert"]).ToString() == "NotAuthorized")
+                    {
+                        <div class="alert alert-danger alert-dismissable">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            <h4 class="text-center">Sorry! You are not an authorized user.</h4>
+                        </div><br />
+
+
+                    }
+                </div>
+
+                <h2 class="text-center">Login</h2>
+                <hr>
+                <form action="@Url.Action("LogIn", "Security")" method="post" role="form">
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="email">Phone Number:</label>
+                            <input type="number" class="form-control" name="phone" id="phone" placeholder="Your phone number" required />
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Password" required />
+
+                        </div>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-info " id="loginBtn" name="loginBtn"><span class="glyphicon glyphicon-log-in"> </span> Login</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+

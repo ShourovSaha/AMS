@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5354506ce92346cf9e60611f61171dc2" Name="Diagram1">
+        <EntityTypeShape EntityType="AMSDBModel.Class" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.Image" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.Notice" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.Period" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.RelationStudentGuardian" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.Section" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.StudentBasic" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.StudentInfo" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.Subject" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.TeacherSubject" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.User" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.UserType" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.Attendance" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.EaxmResult" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.ExamType" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.Message" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.Payment" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.RelationPeriodDayTime" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.vm_GetAllStudentInfo" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.vm_GetClassInfoAlongWithSubjects" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AMSDBModel.vm_GetAllStudentInfo2" Width="1.5" PointX="5.375" PointY="11.75" />
+        <EntityTypeShape EntityType="AMSDBModel.vm_GetAllClassInfoAlongWithSubjects" Width="1.5" PointX="11.375" PointY="11.75" />
+        <EntityTypeShape EntityType="AMSDBModel.vm_GetAllClassInfoAlongWithSubjectsWithTeacher" Width="1.5" PointX="7.375" PointY="12.75" />
+        <EntityTypeShape EntityType="AMSDBModel.vm_NoticeDetails" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="AMSDBModel.vm_GetPeriodInfo" Width="1.5" PointX="0.75" PointY="13.75" />
+        <EntityTypeShape EntityType="AMSDBModel.vm_GetPeriodInfoWithTime" Width="1.5" PointX="2.75" PointY="13.75" />
+        <EntityTypeShape EntityType="AMSDBModel.vw_PeriodDetails" Width="1.5" PointX="13.75" PointY="5.75" />
+        <EntityTypeShape EntityType="AMSDBModel.vw_PeriodDetailsWithTeacherInfo" Width="1.5" PointX="13.75" PointY="9.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

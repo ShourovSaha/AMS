@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "AddNotice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" style="margin-top:30px;">
+    <br />
+    <div class="col-sm-8 col-sm-offset-2 ">
+        <div style="background-color:#7db5e4; padding:15px; margin-top: -4%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <div class="col-sm-12">
+
+                @if (Html.Raw(TempData["msgAlert"]).ToString() == "N")
+                {
+                    <div class="alert alert-warning alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <h4 class="text-center">@Html.Raw(TempData["msgAlertDetails"]).ToString().</h4>
+                    </div>
+
+                }
+
+                @if (Html.Raw(TempData["msgAlert"]).ToString() == "Y")
+                {
+                    <div class="alert alert-success alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <h4 class="text-center">@Html.Raw(TempData["msgAlertDetails"]).ToString().</h4>
+                    </div>
+                }
+            </div>
+
+            <h3 class="lang text-center" key="">Post Notice</h3>
+            @*==========================*@
+            <hr>
+            <form action="@Url.Action("AddNotice", "Notices")" method="post" role="form">
+                @*<input type="hidden" name="StudentId" id="StudentId" value="@ViewBag.StudentId" />*@
+
+                <div class="">
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="Title">First Name:</label>
+                                    <input type="text" class="form-control" name="Title" id="Title" placeholder="Title" required />
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="PostedForTime">Posted For Time:</label>
+                                    <input type="datetime-local" class="form-control" name="PostedForTime" id="PostedForTime" placeholder="Posted For Time" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="Message">Message:</label>
+                                    @Html.TextArea("Message", new {
+                                       rows = "20",
+                                       style = "resize:none;width:400px;",
+                                       placeholder = "Write your message here.",
+                                       @class = "form-control input-lg textarea-editor"
+                               })
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <br />
+                <br />
+                <div class="form-group text-center">
+                    <button type="submit" id="btnSubmit" class="btn btn-primary" style="min-width:150px;"><span class=""> </span> Submit</button>
+                </div>
+                <br />
+            </form>
+            <br />
+            <div>
+                @Html.ActionLink("Show All Notice", "GetNiticeList")
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@section Scripts {
+    <script type="text/javascript"
+            src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js">
+    </script>
+    <script src="~/Scripts/CustomScripts/script-custom-editor.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
+}
+@*<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/CustomScripts/MultipleLanguage.js"></script>*@
+
+
+
+
+
+

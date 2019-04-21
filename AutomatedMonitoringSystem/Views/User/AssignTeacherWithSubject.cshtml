@@ -1,0 +1,147 @@
+﻿
+
+@{
+    ViewBag.Title = "AssignTeacherWithSubject";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" />
+
+<div class="row" style="margin-top:30px;">
+    <br />
+    <div class="col-sm-8 col-sm-offset-2 ">
+        <div style="background-color:#7db5e4; padding:15px; margin-top: -4%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <div class="col-sm-12">
+
+                @if (Html.Raw(TempData["msgAlert"]).ToString() == "N")
+                {
+                    <div class="alert alert-warning alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <h4 class="text-center">@Html.Raw(TempData["msgAlertDetails"]).ToString().</h4>
+                    </div>
+
+                }
+
+                @if (Html.Raw(TempData["msgAlert"]).ToString() == "Y")
+                {
+                    <div class="alert alert-success alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <h4 class="text-center">@Html.Raw(TempData["msgAlertDetails"]).ToString().</h4>
+                    </div>
+                }
+            </div>
+
+            <h3 class="lang text-center" key="">Assign subject to teacher</h3>
+            @*==========================*@
+            <hr>
+            <form action="@Url.Action("AssignTeacherWithSubject", "User")" method="post" role="form">
+                @*<input type="hidden" name="StudentId" id="StudentId" value="@ViewBag.StudentId" />*@
+
+                <div class="">
+                    <fieldset>
+                        @*<legend>Subject Assign</legend>*@
+                        @*<div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="UserPhone">Phone Number:</label>
+                                    <input id="UserPhone" type="number" name="UserPhone" placeholder="Teacher's Phone Number">
+                                </div>
+                            </div>
+                        </div>*@
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="ClassId">Class:</label>
+                                    @Html.DropDownList("ClassId", ViewData["ClassList"] as SelectList, "--Select One--", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="SectionId">Section:</label>
+                                    @Html.DropDownList("SectionId", ViewData["SectionList"] as SelectList, "--Select One--", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="SubjectId">Subject:</label>
+                                    @Html.DropDownList("SubjectId", new SelectList(" "), "--Select One--", new { @class = "form-control" })
+                                    @*<select class="form-control" id="SubjectId" name="SubjectId" required>
+                                            <option class="lang" selected disabled value="" key="">Select Subject</option>
+                                            <option value="1">Bangla</option>
+                                            <option value="2">English</option>
+                                            <option value="3">Math</option>
+                                        </select>*@
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="UserPhone">Phone Number:</label>
+                                    <input class="form-control" id="UserPhone" type="number" name="UserPhone" placeholder="Teacher's Phone Number">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <br />
+                <div class="form-group text-center">
+                    <button type="submit" id="btnSubmit" class="btn btn-primary" style="min-width:150px;"><span class=""> </span> Submit</button>
+                </div>
+                <br />
+            </form>
+
+        </div>
+        <br /><br />
+        <p>@*Teacher List*@</p>
+        <div class="" style="background-color:#82dcce; padding:15px; margin-top: -4%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <table id="dataTable" class="table table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th>Id/Phone</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Gender</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/CustomScripts/CommonCascadingDropDown.js"></script>
+@*<script src="~/Scripts/CustomScripts/TeacherAssignment.js"></script>*@
+<script>
+    $(document).ready(function () {
+        $.noConflict();
+        $.ajax({
+            method: "POST",
+            url: "/User/GetTeachersAjax",
+            data: JSON.stringify({ 'subjectId': SubjectId }),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                $("#dataTable").dataTable({
+                    data: data,
+                    columns: [
+                        { 'data': 'UId' },
+                        { 'data': 'FirstName' },
+                        { 'data': 'LastName' },
+                        { 'data': 'Gender' },
+                        { 'data': 'Email' }
+                    ]
+                });
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+
+    });
+</script>
+
+

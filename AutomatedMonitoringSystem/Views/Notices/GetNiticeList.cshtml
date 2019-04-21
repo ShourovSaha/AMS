@@ -1,0 +1,151 @@
+﻿@model IEnumerable<AutomatedMonitoringSystem.Models.GetNoticeDetails_SP_Result>
+
+@{
+    ViewBag.Title = "GetNiticeList";
+}
+
+<h2>Nitice List</h2>
+
+<div class="row" style="margin-top:30px;">
+    <br />
+    <div class="col-sm-8 col-sm-offset-2 ">
+        <div style="background-color:#7db5e4; padding:15px; margin-top: -4%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <div class="col-sm-12">
+
+                @if (Html.Raw(TempData["msgAlert"]).ToString() == "N")
+                {
+                    <div class="alert alert-warning alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <h4 class="text-center">@Html.Raw(TempData["msgAlertDetails"]).ToString().</h4>
+                    </div>
+
+                }
+
+                @if (Html.Raw(TempData["msgAlert"]).ToString() == "Y")
+                {
+                    <div class="alert alert-success alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <h4 class="text-center">@Html.Raw(TempData["msgAlertDetails"]).ToString().</h4>
+                    </div>
+                }
+            </div>
+
+            <h3 class="lang text-center" key="">All Notice</h3>
+            @*==========================*@
+            <hr>
+            <div style="overflow-x:auto;">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Sl No.</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            Posted By
+                        </th>
+                        <th>
+                            Posted Date
+                        </th>
+                        <th>
+                            Posted For Time
+                        </th>
+                        <th>
+                            Updated Date
+                        </th>
+                        <th>
+                            Class Name
+                        </th>
+                        <th>
+                            Shift
+                        </th>
+                        <th>
+                            Section
+                        </th>
+                        <th>
+                            Subject
+                        </th>
+                        <th>
+                            User
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th></th>
+                    </tr>
+                    @{ 
+                        int count = 0;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        ++count;
+                        <tr>
+                            <td>
+                                @count
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.Message)
+                            </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PostedBy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PostedDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PostedForTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UpdatedDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ClassName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Shift)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SectionName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SubjectName)
+                            </td>
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.MaskingSubjectId)
+                            </td>*@
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.TeacherId)
+                            </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UId)
+                            </td>
+                            <td>
+                                @item.FirstName + " " + @item.LastName
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+                                @*@Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+            <br />
+        </div>
+    </div>
+
+</div>
+
+<p>
+    @Html.ActionLink("Create New", "AddNotice")
+</p>

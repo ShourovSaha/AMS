@@ -1,0 +1,122 @@
+﻿
+@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "Index";
+}
+
+
+
+
+<div class="row" style="margin-top:30px;">
+    <br />
+    <div class="col-sm-8 col-sm-offset-2 ">
+        <div style="background-color:#7db5e4; padding:15px; margin-top: -4%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <div class="col-sm-12">
+
+                @if (Html.Raw(TempData["msgAlert"]).ToString() == "N")
+                {
+                    <div class="alert alert-warning alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <h4 class="text-center">@Html.Raw(TempData["msgAlertDetails"]).ToString().</h4>
+                    </div>
+
+                }
+
+                @if (Html.Raw(TempData["msgAlert"]).ToString() == "Y")
+                {
+                    <div class="alert alert-success alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <h4 class="text-center">@Html.Raw(TempData["msgAlertDetails"]).ToString().</h4>
+                    </div>
+                }
+            </div>
+
+            <h3 class="lang text-center" key="">Attendance Search</h3>
+            @*==========================*@
+            <hr>
+            @*<form action="@Url.Action("", "")" method="post" role="form">*@
+            <div class="">
+                <fieldset>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="ClassId">Class:</label>
+                                @Html.DropDownList("ClassId", ViewData["ClassList"] as SelectList, "--Select One--", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="SectionId">Section:</label>
+                                @Html.DropDownList("SectionId", ViewData["SectionList"] as SelectList, "--Select One--", new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Shift">Shift:</label>
+                                <select class="form-control" id="Shift" name="Shift" required>
+                                    <option selected disabled value="">Select Shift</option>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Day">Day</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Roll">Roll:</label>
+                                <input type="number" class="form-control" name="Roll" id="Roll" placeholder="Roll" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Date">Date:</label>
+                                <input type="date" class="form-control" name="Date" id="Date" placeholder="Date" required />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group text-center">
+                        <button type="submit" onclick="ShowStudentAttendance()" id="btnSubmit" class="btn btn-primary" style="min-width:150px;"><span class=""> </span> Submit</button>
+                    </div>
+                    <br />
+                </fieldset>
+                <br />
+                <div style="">
+                    <table class="table table-responsive table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Roll</th>
+                                <th>Present Status</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <br />
+            
+            @*</form>*@
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+<script src="~/Scripts/CustomScripts/Attendance.js"></script>

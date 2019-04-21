@@ -1,0 +1,269 @@
+﻿@model IEnumerable<AutomatedMonitoringSystem.Models.GetExamInfoForStudent_SP_Result>
+
+@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "Exam Result";
+}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" />
+
+<div class="row" style="margin-top:30px;">
+    <br />
+    <div class="col-sm-8 col-sm-offset-2 ">
+        <div style="background-color:#7db5e4; padding:15px; margin-top: -4%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <div class="col-sm-12">
+
+                @if (Html.Raw(TempData["msgAlert"]).ToString() == "N")
+                {
+                    <div class="alert alert-warning alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <h4 class="text-center">@Html.Raw(TempData["msgAlertDetails"]).ToString().</h4>
+                    </div>
+
+                }
+
+                @if (Html.Raw(TempData["msgAlert"]).ToString() == "Y")
+                {
+                    <div class="alert alert-success alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <h4 class="text-center">@Html.Raw(TempData["msgAlertDetails"]).ToString().</h4>
+                    </div>
+                }
+            </div>
+
+            <h3 class="lang text-center" key="examResult">Exam Result</h3>
+            @*==========================*@
+            <hr>
+            <form action="@Url.Action("GetExamResultByClassSectionShift", "Exam")" method="post" role="form">
+                <div class="">
+                    <fieldset>
+                        @*<legend>Subject Assign</legend>*@
+                        @*<div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="Roll">Roll Number:</label>
+                                    <input id="Roll" type="number" name="Roll" placeholder="Student's Roll Number">
+                                </div>
+                            </div>
+                        </div>*@
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="ClassId" class="lang" key="class">Class:</label>
+                                    @Html.DropDownList("ClassId", ViewData["ClassList"] as SelectList, "--Select One--", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="SectionId" class="lang" key="classSection">Section:</label>
+                                    @Html.DropDownList("SectionId", ViewData["SectionList"] as SelectList, "--Select One--", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="SubjectId">Subject:</label>
+                                    <input type="number" id="Roll" class="form-control" placeholder="Roll" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="ExamTypeId">Exam Type:</label>
+                                <select class="form-control" id="ExamTypeId" name="ExamTypeId" required>
+                                    <option selected disabled value="">Select Exam Type</option>
+                                    <option value="1">First Term</option>
+                                    <option value="2">Mid Term</option>
+                                    <option value="3">Final</option>
+                                    <option value="4">Class Test</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="Shift">Shift:</label>
+                                    <select class="form-control" id="Shift" name="Shift" required>
+                                        <option selected disabled value="">Select Shift</option>
+                                        <option value="Common">Common</option>
+                                        <option value="Day">Day</option>
+                                        <option value="Morning">Morning</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="Year">Year:</label>
+                                    @Html.DropDownList("Year", ViewData["YearList"] as SelectList, "--Select One--", new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <br />
+                <div class="form-group text-center">
+                    <button type="" id="btnSubmit" onclick="PeriodAssionWithTeachersSubject()" class="btn btn-primary" style="min-width:150px;"><span class=""> </span> Submit</button>
+                </div>
+            </form>
+
+        </div>
+        <br /><br />
+        <div class="" style="background-color:#82dcce; padding:15px; margin-top: -4%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            @if (Model != null)
+            {
+                <div class="panel panel-heading info">
+                    <table class="table table-striped">
+                        <tbody>
+                            @foreach (var i in Model)
+                            {
+                                <tr>
+                                    <td><p>Student's Name: @i.Name</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Roll: @i.Roll</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Contact: @i.Contact1</p></td>
+                                </tr>
+                                break;
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            }
+
+
+            <div style="">
+                <table class="table table-hover table-responsive">
+                    <tr>
+                        <th>
+                            SL No.
+                        </th>
+                        <th>
+                            Subject Name
+                        </th>
+                        <th>
+                            Obtained Marks
+                        </th>
+                        <th>
+                            Markes Out of
+                        </th>
+                        <th>
+                            Grade
+                        </th>
+                        <th>
+                            Exam taken by
+                        </th>
+                        <th>
+                            Exam taker's Phone
+                        </th>
+                        <th>
+                            Exam Date
+                        </th>
+                        <th>
+                            Remarks
+                        </th>
+                    </tr>
+                    @{
+                        int count = 0;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <td>@count</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SubjectName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ObtainMark)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MarksOutOf)
+                            </td>
+                            <td>
+                                @if (item.ObtainMark <= 100 && item.ObtainMark >= 80)
+                                {
+                                    <p>A+</p>
+                                }
+                                else if (item.ObtainMark <= 79 && item.ObtainMark >= 70)
+                                {
+                                    <p>A</p>
+                                }
+                                else if (item.ObtainMark <= 69 && item.ObtainMark >= 60)
+                                {
+                                    <p>A-</p>
+                                }
+                                else if (item.ObtainMark <= 59 && item.ObtainMark >= 50)
+                                {
+                                    <p>B</p>
+                                }
+                                else if (item.ObtainMark <= 49 && item.ObtainMark >= 40)
+                                {
+                                    <p>C</p>
+                                }
+                                else if (item.ObtainMark <= 39 && item.ObtainMark >= 34)
+                                {
+                                    <p>D</p>
+                                }
+                                else
+                                {
+                                    <p>F</p>
+                                }
+                            </td>
+
+                            <td>
+                                @item.TeacherFName @item.TeacherLName
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TeacherId)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+
+                            <td>
+                                @*Remarks*@
+                            </td>
+
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+        <br /><br />
+        <div class="" style="background-color:#59d8f5; padding:15px; margin-top: -4%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <table id="dataTable" class="table table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th>Student Id</th>
+                        <th>Name</th>
+                        <th>Roll</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <br />
+    </div>
+
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/CustomScripts/CommonCascadingDropDown.js"></script>
+<script src="~/Scripts/CustomScripts/Student.js"></script>
+<script>
+    $(document).ready(function () {
+        $.noConflict();
+        //GetTeachers();
+    });
+</script>
+
+

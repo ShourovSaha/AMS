@@ -1,0 +1,145 @@
+﻿@*@model IEnumerable<AutomatedMonitoringSystem.Models.GetPeriodsByClassSectionShift_SP_Result>*@
+@model Dictionary<string, List<AutomatedMonitoringSystem.Models.GetPeriodsByClassSectionShift_SP_Result>>
+
+@{
+    /**/
+
+    ViewBag.Title = "GetRoutine";
+}
+
+
+<div class="row" style="margin-top:30px;">
+    <br />
+    <div class="col-sm-8 col-sm-offset-2 ">
+        <div style="background-color:#7db5e4; padding:15px; margin-top: -4%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <div class="col-sm-12">
+
+                @if (Html.Raw(TempData["msgAlert"]).ToString() == "N")
+                {
+                    <div class="alert alert-warning alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <h4 class="text-center">@Html.Raw(TempData["msgAlertDetails"]).ToString().</h4>
+                    </div>
+
+                }
+
+                @if (Html.Raw(TempData["msgAlert"]).ToString() == "Y")
+                {
+                    <div class="alert alert-success alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <h4 class="text-center">@Html.Raw(TempData["msgAlertDetails"]).ToString().</h4>
+                    </div>
+                }
+            </div>
+
+            <h3 class="lang text-center" key="">Class Routine</h3>
+            @*==========================*@
+            <hr>
+            <form action="@Url.Action("GetRoutine", "Period")" method="post" role="form">
+                <div class="">
+                    <fieldset>
+                        @*<legend>Subject Assign</legend>*@
+                        @*<div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="Roll">Roll Number:</label>
+                                        <input id="Roll" type="number" name="Roll" placeholder="Student's Roll Number">
+                                    </div>
+                                </div>
+                            </div>*@
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="ClassId">Class:</label>
+                                    @Html.DropDownList("ClassId", ViewData["ClassList"] as SelectList, "--Select One--", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="SectionId">Section:</label>
+                                    @Html.DropDownList("SectionId", ViewData["SectionList"] as SelectList, "--Select One--", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="Shift">Shift:</label>
+                                    <select class="form-control" id="Shift" name="Shift" required>
+                                        <option selected disabled value="">Select Shift</option>
+                                        <option value="common">Common</option>
+                                        <option value="day">Day</option>
+                                        <option value="morning">Morning</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <br />
+                <br />
+                <div class="form-group text-center">
+                    <button type="" id="btnSubmit" onclick="PeriodAssionWithTeachersSubject()" class="btn btn-primary" style="min-width:150px;"><span class=""> </span> Submit</button>
+                </div>
+            </form>
+
+        </div>
+        <br /><br />
+        <div class="" style="background-color:#82dcce; padding:15px; margin-top: -4%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <div style="">
+                <table class="table table-hover table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                Day
+                            </th>
+                            <th>
+                                07:00 - 08:00
+                            </th>
+                            <th>
+                                08:00 - 09:00
+                            </th>
+                            <th>
+                                10:00 - 11:00
+                            </th>
+                            <th>
+                                11:00 - 12:00
+                            </th>
+                            <th>
+                                01:00 - 02:00
+                            </th>
+                            <th>
+                                02:00 - 03:00
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var i in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @i.Key
+                                </td>
+                                @foreach (var j in i.Value)
+                                {
+                                    <td>
+                                        @if (j != null)
+                                        {
+                                            <p>@j.SubjectName</p>
+                                            <p>@j.SectionName</p>
+                                        }
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br />
+    </div>
+
+</div>
+<script src="~/Scripts/CustomScripts/CommonCascadingDropDown.js"></script>
