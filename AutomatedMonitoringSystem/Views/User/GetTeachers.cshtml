@@ -83,6 +83,10 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="PeriodId">Period:</label>
+                                @Html.TextBox("UserPhone", new SelectList(" "), "--Select One--", new { @class = "form-control", @type = "number" })
+                            </div>
                         </div>
                     </div>
                 </fieldset>

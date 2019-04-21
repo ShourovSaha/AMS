@@ -9,6 +9,6 @@ namespace AutomatedMonitoringSystem.Models.ViewModels
     {
         public int PeriodId { get; set; }
         public int SubjectId { get; set; }
-        //public long UserPhone { get; set; }
+        public long UserPhone { get; set; }
     }
 }

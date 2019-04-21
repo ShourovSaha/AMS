@@ -68,14 +68,14 @@ namespace AutomatedMonitoringSystem.Controllers.Web
         }
 
 
-        public JsonResult PeriodAssignmentAjax(string subjectId, string periodId/*, string userPhone*/)
+        public JsonResult PeriodAssignmentAjax(string subjectId, string periodId, string userPhone)
         {
             ResponseResult responseResult = new ResponseResult();
             AssignTeachersSubjectWithPeriodVM assignTeachersVM = new AssignTeachersSubjectWithPeriodVM()
             {
                 PeriodId = Convert.ToInt32(periodId),
                 SubjectId = Convert.ToInt32(subjectId),
-                //UserPhone = Convert.ToInt64(userPhone)
+                UserPhone = Convert.ToInt64(userPhone)
             };
 
             try

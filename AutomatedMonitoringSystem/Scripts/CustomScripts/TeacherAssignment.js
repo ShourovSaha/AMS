@@ -4,13 +4,13 @@
     var SectionId = $("#SectionId").val();
     var Day = $("#Day").val();
     var PeriodId = $("#PeriodId").val();
-    //var UserPhone = $("#UserPhone").val();
+    var UserPhone = $("#UserPhone").val();
 
     if (SubjectId == null || SubjectId == "undifined" || SubjectId == "" ||
         ClassId == null || ClassId == "undifined" || ClassId == "" ||
         SectionId == null || SectionId == "undifined" || SectionId == "" ||
         Day == null || Day == "undifined" || Day == "" 
-        /* ||UserPhone == null || UserPhone == "undifined" || UserPhone == ""*/) {
+         ||UserPhone == null || UserPhone == "undifined" || UserPhone == "") {
         alert("Input data correctly!");
         return 0;
     }
@@ -19,11 +19,29 @@
         $.ajax({
             method: "POST",
             url: "/User/PeriodAssignmentAjax",
-            data: JSON.stringify({ 'subjectId': SubjectId, 'periodId': PeriodId }),
+            data: JSON.stringify({ 'subjectId': SubjectId, 'periodId': PeriodId, 'userPhone': UserPhone }),
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                alert(data);
+                if (data == "Y") {
+                    var Lang = localStorage.getItem("lang");
+                    if (Lang == "bn") {
+                        alert("ডাটা সংরক্ষিত হয়েছে |");
+                    }
+                    else {
+                        alert("Data Saved Successfully.");
+                    }
+                    
+                }
+                else {
+                    if (Lang == "bn") {
+                        alert("একই ডাটা আগে থেকে সংরক্ষিত রয়েছে |");
+                    }
+                    else {
+                        alert("Already Assigned!");
+                    }
+                    
+                }
             },
             error: function (err) {
                 console.log(err);
@@ -54,7 +72,7 @@ $('#SubjectId').change(function () {
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                //$("#dataTable").dataTable().clear().draw();
+                //$("#dataTable").dataTable().fnDestory();
                 $("#dataTable").dataTable({
                     data: data,
                     columns: [

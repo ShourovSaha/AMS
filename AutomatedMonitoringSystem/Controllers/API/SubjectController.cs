@@ -34,9 +34,9 @@ namespace AutomatedMonitoringSystem.Controllers.API
                                             .Select(a => new
                                             {
                                                 a.SubjectId,
-                                                a.SubjectName,
-                                                a.MaskingSubjectId
-                                            });
+                                                a.SubjectName
+                                            })
+                                            .Distinct();
 
                 if (subjectList != null)
                 {
