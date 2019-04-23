@@ -37,7 +37,7 @@ namespace AutomatedMonitoringSystem.Controllers.Web
         }
 
         [HttpPost]
-        public ActionResult GetExamResultByClassSectionShift(int subjectId, int classId, int sectionId, string shift, int examTypeId, int year)
+        public ActionResult GetExamResultByClassSectionShift(int subjectId, int classId, int sectionId, /*string shift,*/ int examTypeId, int year)
         {
             ResponseResult responseResult = new ResponseResult();
             List<GetExamInfoSubjectWise_SP_Result> resultList = new List<GetExamInfoSubjectWise_SP_Result>();
@@ -47,7 +47,7 @@ namespace AutomatedMonitoringSystem.Controllers.Web
                 ClassId = classId,
                 SectionId = sectionId,
                 ExamTypeId = examTypeId,
-                Shift = shift,
+                //Shift = shift,
                 Year = year
             };
             try
@@ -89,7 +89,7 @@ namespace AutomatedMonitoringSystem.Controllers.Web
 
 
         [HttpPost]
-        public ActionResult GetStudentExamResult(int roll, int classId, int sectionId, string shift, int examTypeId, int year)
+        public ActionResult GetStudentExamResult(int roll, int classId, int sectionId, int examTypeId, int year)
         {
             ResponseResult responseResult = new ResponseResult();
             List<GetExamInfoForStudent_SP_Result> resultList = new List<GetExamInfoForStudent_SP_Result>();
@@ -99,7 +99,6 @@ namespace AutomatedMonitoringSystem.Controllers.Web
                 ClassId = classId,
                 SectionId = sectionId,
                 ExamTypeId = examTypeId,
-                Shift = shift,
                 Year = year
             };
             try

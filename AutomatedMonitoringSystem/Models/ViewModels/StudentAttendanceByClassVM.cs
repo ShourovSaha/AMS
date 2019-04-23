@@ -9,7 +9,7 @@ namespace AutomatedMonitoringSystem.Models.ViewModels
     {       
         public int ClassId { get; set; }
         public int SectionId { get; set; }
-        public string Shift { get; set; }
+        //public string Shift { get; set; }
         public DateTime Date { get; set; }
     }
 }

@@ -50,7 +50,7 @@ namespace AutomatedMonitoringSystem.Controllers.API
                     Roll = studentVM.Roll,
                     ClassId = studentVM.ClassId,
                     SectionId = studentVM.SectionId,
-                    Shift = studentVM.Shift,
+                    Shift = GetShiftByClassId(studentVM.ClassId),
                     Year = studentVM.Year,
                     Residential = studentVM.Residential
                 };
@@ -72,6 +72,22 @@ namespace AutomatedMonitoringSystem.Controllers.API
             return responseResult;
         }
 
+
+        public string GetShiftByClassId(long classId)
+        {
+            string shift = null;
+            try
+            {
+                shift = _dbContext.Classes.Where(a => a.ClassId == classId)
+                                         .Select(s => s.Shift)
+                                         .SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return shift;
+        }
 
         // Post: api/Student/StudentsInfoListByClassSection
         [HttpPost]

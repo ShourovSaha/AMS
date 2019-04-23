@@ -32,8 +32,7 @@ namespace AutomatedMonitoringSystem.Controllers.API
             {
                 var stuendentList = _dbContext.GetAttedanceByClass_SP(studentAttendanceByClassVM.Date,
                                                         studentAttendanceByClassVM.ClassId,
-                                                        studentAttendanceByClassVM.SectionId,
-                                                        studentAttendanceByClassVM.Shift);
+                                                        studentAttendanceByClassVM.SectionId);
                 if (stuendentList != null)
                 {
                     responseResult.Content = stuendentList;
@@ -69,8 +68,8 @@ namespace AutomatedMonitoringSystem.Controllers.API
                                                         studentAttendanceByRollVM.Roll,
                                                         studentAttendanceByRollVM.Date,
                                                         studentAttendanceByRollVM.ClassId,
-                                                        studentAttendanceByRollVM.SectionId,
-                                                        studentAttendanceByRollVM.Shift);
+                                                        studentAttendanceByRollVM.SectionId
+                                                        );
                 if (stuendenrAttendanceList != null)
                 {
                     responseResult.Content = stuendenrAttendanceList;

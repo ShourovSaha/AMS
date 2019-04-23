@@ -93,28 +93,24 @@ namespace AutomatedMonitoringSystem.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddNotice_SP", noticeIdParameter, postedByParameter, maskingIdParameter, messageParameter, titleParameter, postedDateParameter, updatedDateParameter, postedForTimeParameter, mSG_Code, mSG);
         }
     
-        public virtual ObjectResult<GetAttedanceByClass_SP_Result> GetAttedanceByClass_SP(Nullable<System.DateTime> date, Nullable<int> className, Nullable<int> sectionName, string shift)
+        public virtual ObjectResult<GetAttedanceByClass_SP_Result> GetAttedanceByClass_SP(Nullable<System.DateTime> date, Nullable<int> classId, Nullable<int> sectionId)
         {
             var dateParameter = date.HasValue ?
                 new ObjectParameter("Date", date) :
                 new ObjectParameter("Date", typeof(System.DateTime));
     
-            var classNameParameter = className != null ?
-                new ObjectParameter("ClassName", className) :
-                new ObjectParameter("ClassName", typeof(string));
+            var classIdParameter = classId.HasValue ?
+                new ObjectParameter("ClassId", classId) :
+                new ObjectParameter("ClassId", typeof(int));
     
-            var sectionNameParameter = sectionName != null ?
-                new ObjectParameter("SectionName", sectionName) :
-                new ObjectParameter("SectionName", typeof(string));
+            var sectionIdParameter = sectionId.HasValue ?
+                new ObjectParameter("SectionId", sectionId) :
+                new ObjectParameter("SectionId", typeof(int));
     
-            var shiftParameter = shift != null ?
-                new ObjectParameter("Shift", shift) :
-                new ObjectParameter("Shift", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAttedanceByClass_SP_Result>("GetAttedanceByClass_SP", dateParameter, classNameParameter, sectionNameParameter, shiftParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAttedanceByClass_SP_Result>("GetAttedanceByClass_SP", dateParameter, classIdParameter, sectionIdParameter);
         }
     
-        public virtual ObjectResult<GetAttedanceByStudentRoll_SP_Result> GetAttedanceByStudentRoll_SP(Nullable<int> roll, Nullable<System.DateTime> date, Nullable<int> className, Nullable<int> sectionName, string shift)
+        public virtual ObjectResult<GetAttedanceByStudentRoll_SP_Result> GetAttedanceByStudentRoll_SP(Nullable<int> roll, Nullable<System.DateTime> date, Nullable<int> classId, Nullable<int> sectionId)
         {
             var rollParameter = roll.HasValue ?
                 new ObjectParameter("Roll", roll) :
@@ -124,19 +120,15 @@ namespace AutomatedMonitoringSystem.Models
                 new ObjectParameter("Date", date) :
                 new ObjectParameter("Date", typeof(System.DateTime));
     
-            var classNameParameter = className != null ?
-                new ObjectParameter("ClassName", className) :
-                new ObjectParameter("ClassName", typeof(string));
+            var classIdParameter = classId.HasValue ?
+                new ObjectParameter("ClassId", classId) :
+                new ObjectParameter("ClassId", typeof(int));
     
-            var sectionNameParameter = sectionName != null ?
-                new ObjectParameter("SectionName", sectionName) :
-                new ObjectParameter("SectionName", typeof(string));
+            var sectionIdParameter = sectionId.HasValue ?
+                new ObjectParameter("SectionId", sectionId) :
+                new ObjectParameter("SectionId", typeof(int));
     
-            var shiftParameter = shift != null ?
-                new ObjectParameter("Shift", shift) :
-                new ObjectParameter("Shift", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAttedanceByStudentRoll_SP_Result>("GetAttedanceByStudentRoll_SP", rollParameter, dateParameter, classNameParameter, sectionNameParameter, shiftParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAttedanceByStudentRoll_SP_Result>("GetAttedanceByStudentRoll_SP", rollParameter, dateParameter, classIdParameter, sectionIdParameter);
         }
     
         public virtual ObjectResult<sp_AddStudentInfo_Result> sp_AddStudentInfo(Nullable<long> studentId, string name, Nullable<System.DateTime> birthday, string fatherName, string motherName, string presentAddress, string permanentAddress, string contact1, string contact2, Nullable<int> roll, Nullable<int> year, string shift, Nullable<long> classId, Nullable<int> sectionId, string residential)
@@ -445,7 +437,7 @@ namespace AutomatedMonitoringSystem.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     
-        public virtual ObjectResult<GetExamInfoSubjectWise_SP_Result> GetExamInfoSubjectWise_SP(Nullable<int> subjectId, Nullable<int> classId, Nullable<int> sectionId, string shift, Nullable<int> examTypeId, Nullable<int> year)
+        public virtual ObjectResult<GetExamInfoSubjectWise_SP_Result> GetExamInfoSubjectWise_SP(Nullable<int> subjectId, Nullable<int> classId, Nullable<int> sectionId, Nullable<int> examTypeId, Nullable<int> year)
         {
             var subjectIdParameter = subjectId.HasValue ?
                 new ObjectParameter("SubjectId", subjectId) :
@@ -459,10 +451,6 @@ namespace AutomatedMonitoringSystem.Models
                 new ObjectParameter("SectionId", sectionId) :
                 new ObjectParameter("SectionId", typeof(int));
     
-            var shiftParameter = shift != null ?
-                new ObjectParameter("Shift", shift) :
-                new ObjectParameter("Shift", typeof(string));
-    
             var examTypeIdParameter = examTypeId.HasValue ?
                 new ObjectParameter("ExamTypeId", examTypeId) :
                 new ObjectParameter("ExamTypeId", typeof(int));
@@ -471,10 +459,10 @@ namespace AutomatedMonitoringSystem.Models
                 new ObjectParameter("Year", year) :
                 new ObjectParameter("Year", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetExamInfoSubjectWise_SP_Result>("GetExamInfoSubjectWise_SP", subjectIdParameter, classIdParameter, sectionIdParameter, shiftParameter, examTypeIdParameter, yearParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetExamInfoSubjectWise_SP_Result>("GetExamInfoSubjectWise_SP", subjectIdParameter, classIdParameter, sectionIdParameter, examTypeIdParameter, yearParameter);
         }
     
-        public virtual ObjectResult<GetExamInfoForStudent_SP_Result> GetExamInfoForStudent_SP(Nullable<int> classId, Nullable<int> sectionId, string shift, Nullable<int> examTypeId, Nullable<int> year, Nullable<int> roll)
+        public virtual ObjectResult<GetExamInfoForStudent_SP_Result> GetExamInfoForStudent_SP(Nullable<int> classId, Nullable<int> sectionId, Nullable<int> examTypeId, Nullable<int> year, Nullable<int> roll)
         {
             var classIdParameter = classId.HasValue ?
                 new ObjectParameter("ClassId", classId) :
@@ -483,10 +471,6 @@ namespace AutomatedMonitoringSystem.Models
             var sectionIdParameter = sectionId.HasValue ?
                 new ObjectParameter("SectionId", sectionId) :
                 new ObjectParameter("SectionId", typeof(int));
-    
-            var shiftParameter = shift != null ?
-                new ObjectParameter("Shift", shift) :
-                new ObjectParameter("Shift", typeof(string));
     
             var examTypeIdParameter = examTypeId.HasValue ?
                 new ObjectParameter("ExamTypeId", examTypeId) :
@@ -500,7 +484,7 @@ namespace AutomatedMonitoringSystem.Models
                 new ObjectParameter("Roll", roll) :
                 new ObjectParameter("Roll", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetExamInfoForStudent_SP_Result>("GetExamInfoForStudent_SP", classIdParameter, sectionIdParameter, shiftParameter, examTypeIdParameter, yearParameter, rollParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetExamInfoForStudent_SP_Result>("GetExamInfoForStudent_SP", classIdParameter, sectionIdParameter, examTypeIdParameter, yearParameter, rollParameter);
         }
     }
 }

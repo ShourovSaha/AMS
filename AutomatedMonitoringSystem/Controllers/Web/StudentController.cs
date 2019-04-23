@@ -41,7 +41,8 @@ namespace AutomatedMonitoringSystem.Controllers.Web
         [HttpPost]
         public ActionResult AddStudent(string Name, DateTime Birthday, string FatherName, string MotherName,
                     string PresentAddress, string PermanentAddress, string Contact1, string Contact2,
-                    int Roll, int Year, string Shift, long ClassId, int SectionId, string Residential)
+                    int Roll, int Year,/* string Shift,*/ long ClassId, int SectionId, string Residential, 
+                    HttpPostedFileBase file)
         {
             ResponseResult responseResult = new ResponseResult();
             StudentVM studentVM = new StudentVM()
@@ -58,7 +59,6 @@ namespace AutomatedMonitoringSystem.Controllers.Web
                 //=======
                 Roll = Roll,
                 Year = Year,
-                Shift = Shift,
                 ClassId = ClassId,
                 SectionId = SectionId,
                 Residential = Residential
@@ -66,6 +66,15 @@ namespace AutomatedMonitoringSystem.Controllers.Web
 
             try
             {
+                if (file != null)
+                {
+                    file.SaveAs(HttpContext.Server.MapPath("~Content/Images/StudentImage")
+                                                          + file.FileName);
+                    //img.ImagePath = file.FileName;
+                }
+
+
+
                 var res = _apiRequest.HttpPostRequest(studentVM, "api/Student/AddStudent");
                 string apiResponse = res.ToString();
                 responseResult = JsonConvert.DeserializeObject<ResponseResult>(apiResponse);

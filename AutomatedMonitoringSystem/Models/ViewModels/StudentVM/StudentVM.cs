@@ -19,7 +19,7 @@ namespace AutomatedMonitoringSystem.Models.ViewModels.StudentVM
         //========
         public int Roll { get; set; }
         public int Year { get; set; }
-        public string Shift { get; set; }
+        //public string Shift { get; set; }
         public long ClassId { get; set; }
         public Nullable<int> SectionId { get; set; }
         public string Residential { get; set; }

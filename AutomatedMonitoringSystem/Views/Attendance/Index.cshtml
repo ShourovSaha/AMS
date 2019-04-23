@@ -33,7 +33,7 @@
                     </div>
                 }
             </div>
-
+            @Html.ActionLink("Subject Wise Attendance", "AttendanceByStudentRoll", "Attendance")
             <h3 class="lang text-center" key="">Attendance Search</h3>
             @*==========================*@
             <hr>
@@ -57,30 +57,15 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="Shift">Shift:</label>
-                                <select class="form-control" id="Shift" name="Shift" required>
-                                    <option selected disabled value="">Select Shift</option>
-                                    <option value="Morning">Morning</option>
-                                    <option value="Day">Day</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
                                 <label for="Roll">Roll:</label>
                                 <input type="number" class="form-control" name="Roll" id="Roll" placeholder="Roll" />
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="Date">Date:</label>
                                 <input type="date" class="form-control" name="Date" id="Date" placeholder="Date" required />
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-
                         </div>
                     </div>
                     <br />
@@ -104,7 +89,7 @@
                 </div>
             </div>
             <br />
-            
+
             @*</form>*@
 
         </div>

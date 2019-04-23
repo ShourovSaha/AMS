@@ -62,6 +62,17 @@ namespace AutomatedMonitoringSystem.Controllers.Web
 
 
 
+
+        // GET: Attendance
+        public ActionResult AttendanceByStudentRoll()
+        {
+            ViewData["ClassList"] = new SelectList(GetClassListForDropDown(), "ClassId", "ClassWithShift");
+            ViewData["SectionList"] = new SelectList(GetSectionListForDropDown(), "SectionId", "SectionName");
+            return View();
+        }
+
+
+
         public JsonResult StudentAttendanceClassSectionRollWise(StudentAttendanceByRollVM studentAttendanceByRollVM)
         {
             ResponseResult responseResult = new ResponseResult();

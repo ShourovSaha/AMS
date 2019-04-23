@@ -237,6 +237,7 @@
     <Compile Include="Models\Image.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ImageVM.cs" />
     <Compile Include="Models\Message.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -443,6 +444,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\StudentImage\" />
     <Folder Include="Models\ViewModels\UserVM\" />
     <Folder Include="Repositories\ApiRepositories\" />
     <Folder Include="Views\Admin\" />

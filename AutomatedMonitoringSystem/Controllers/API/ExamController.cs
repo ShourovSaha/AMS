@@ -31,7 +31,7 @@ namespace AutomatedMonitoringSystem.Controllers.API
             try
             {
                 var examResultList = _dbContext.GetExamInfoSubjectWise_SP(model.SubjectId, model.ClassId, model.SectionId,
-                                                                    model.Shift, model.ExamTypeId, model.Year);
+                                                                    model.ExamTypeId, model.Year);
 
                 if (examResultList != null)
                 {
@@ -65,7 +65,7 @@ namespace AutomatedMonitoringSystem.Controllers.API
             try
             {
                 var examResultList = _dbContext.GetExamInfoForStudent_SP(model.ClassId, model.SectionId,
-                                                                    model.Shift, model.ExamTypeId, model.Year, model.Roll);
+                                                                     model.ExamTypeId, model.Year, model.Roll);
 
                 if (examResultList != null)
                 {

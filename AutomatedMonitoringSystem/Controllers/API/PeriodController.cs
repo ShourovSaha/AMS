@@ -28,7 +28,7 @@ namespace AutomatedMonitoringSystem.Controllers.API
             ResponseResult responseResult = new ResponseResult();
             try
             {
-                var periodList = _dbContext.GetPeriodsByClassSectionShift_SP(weeklyRoutinebyClassSectionShiftDayVM.ClassId,
+                var periodList = _dbContext.GetRoutineByClassSectionShift_SP(weeklyRoutinebyClassSectionShiftDayVM.ClassId,
                                                         weeklyRoutinebyClassSectionShiftDayVM.SectionId,
                                                         weeklyRoutinebyClassSectionShiftDayVM.Shift);
                 if (periodList != null)

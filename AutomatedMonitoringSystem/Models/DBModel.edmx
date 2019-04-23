@@ -496,21 +496,18 @@ warning 6002: The table/view 'AMSDB.dbo.vw_PeriodDetailsWithTeacherInfo' does no
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="GetAttedanceByClass_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Date" Type="date" Mode="In" />
-          <Parameter Name="ClassName" Type="nvarchar" Mode="In" />
-          <Parameter Name="SectionName" Type="nvarchar" Mode="In" />
-          <Parameter Name="Shift" Type="nvarchar" Mode="In" />
+          <Parameter Name="ClassId" Type="int" Mode="In" />
+          <Parameter Name="SectionId" Type="int" Mode="In" />
         </Function>
         <Function Name="GetAttedanceByStudentRoll_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Roll" Type="int" Mode="In" />
           <Parameter Name="Date" Type="date" Mode="In" />
-          <Parameter Name="ClassName" Type="nvarchar" Mode="In" />
-          <Parameter Name="SectionName" Type="nvarchar" Mode="In" />
-          <Parameter Name="Shift" Type="nvarchar" Mode="In" />
+          <Parameter Name="ClassId" Type="int" Mode="In" />
+          <Parameter Name="SectionId" Type="int" Mode="In" />
         </Function>
         <Function Name="GetExamInfoForStudent_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ClassId" Type="int" Mode="In" />
           <Parameter Name="SectionId" Type="int" Mode="In" />
-          <Parameter Name="Shift" Type="nvarchar" Mode="In" />
           <Parameter Name="ExamTypeId" Type="int" Mode="In" />
           <Parameter Name="Year" Type="int" Mode="In" />
           <Parameter Name="Roll" Type="int" Mode="In" />
@@ -519,7 +516,6 @@ warning 6002: The table/view 'AMSDB.dbo.vw_PeriodDetailsWithTeacherInfo' does no
           <Parameter Name="SubjectId" Type="int" Mode="In" />
           <Parameter Name="ClassId" Type="int" Mode="In" />
           <Parameter Name="SectionId" Type="int" Mode="In" />
-          <Parameter Name="Shift" Type="nvarchar" Mode="In" />
           <Parameter Name="ExamTypeId" Type="int" Mode="In" />
           <Parameter Name="Year" Type="int" Mode="In" />
         </Function>
@@ -1088,16 +1084,14 @@ warning 6002: The table/view 'AMSDB.dbo.vw_PeriodDetailsWithTeacherInfo' does no
           </FunctionImport>
           <FunctionImport Name="GetAttedanceByClass_SP" ReturnType="Collection(AMSDBModel.GetAttedanceByClass_SP_Result)">
             <Parameter Name="Date" Mode="In" Type="DateTime" />
-            <Parameter Name="ClassName" Mode="In" Type="String" />
-            <Parameter Name="SectionName" Mode="In" Type="String" />
-            <Parameter Name="Shift" Mode="In" Type="String" />
+            <Parameter Name="ClassId" Mode="In" Type="Int32" />
+            <Parameter Name="SectionId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetAttedanceByStudentRoll_SP" ReturnType="Collection(AMSDBModel.GetAttedanceByStudentRoll_SP_Result)">
             <Parameter Name="Roll" Mode="In" Type="Int32" />
             <Parameter Name="Date" Mode="In" Type="DateTime" />
-            <Parameter Name="ClassName" Mode="In" Type="String" />
-            <Parameter Name="SectionName" Mode="In" Type="String" />
-            <Parameter Name="Shift" Mode="In" Type="String" />
+            <Parameter Name="ClassId" Mode="In" Type="Int32" />
+            <Parameter Name="SectionId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_AddStudentInfo" ReturnType="Collection(AMSDBModel.sp_AddStudentInfo_Result)">
             <Parameter Name="StudentId" Mode="In" Type="Int64" />
@@ -1203,14 +1197,12 @@ warning 6002: The table/view 'AMSDB.dbo.vw_PeriodDetailsWithTeacherInfo' does no
             <Parameter Name="SubjectId" Mode="In" Type="Int32" />
             <Parameter Name="ClassId" Mode="In" Type="Int32" />
             <Parameter Name="SectionId" Mode="In" Type="Int32" />
-            <Parameter Name="Shift" Mode="In" Type="String" />
             <Parameter Name="ExamTypeId" Mode="In" Type="Int32" />
             <Parameter Name="Year" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetExamInfoForStudent_SP" ReturnType="Collection(AMSDBModel.GetExamInfoForStudent_SP_Result)">
             <Parameter Name="ClassId" Mode="In" Type="Int32" />
             <Parameter Name="SectionId" Mode="In" Type="Int32" />
-            <Parameter Name="Shift" Mode="In" Type="String" />
             <Parameter Name="ExamTypeId" Mode="In" Type="Int32" />
             <Parameter Name="Year" Mode="In" Type="Int32" />
             <Parameter Name="Roll" Mode="In" Type="Int32" />

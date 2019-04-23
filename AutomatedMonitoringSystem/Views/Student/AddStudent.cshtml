@@ -7,7 +7,7 @@
     <br />
     <div class="col-sm-8 col-sm-offset-2 ">
         @*<div style="background-color:#7db5e4; padding:15px; margin-top: -4%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">*@
-            
+
         <div style="background-color:#068effd9;color:white; padding:15px; margin-top: -4%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
             <div class="col-sm-12">
 
@@ -32,173 +32,192 @@
             <h3 class="lang text-center" key="addStudent">Add Student</h3>
             @*==========================*@
             <hr>
-            <form action="@Url.Action("AddStudent", "Student")" method="post" role="form">
 
-                <div class="">
-                    <fieldset>
-                        <legend class="lang" key="basicInformation">Basic Information</legend>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="Name" class="lang" key="fullName">Full Name:</label>
-                                    <input type="text" class="form-control" name="Name" id="Name" placeholder="Student's Full Name" required />
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="lang" key="fathersName" for="FatherName">Father's Name:</label>
-                                    <input type="text" class="form-control" name="FatherName" id="FatherName" placeholder="Father's Name" required />
-                                </div>
-                            </div>
+
+
+
+            }
+            @*<form action="@Html.Action("AddStudent", "Student", new { enctype = "multipart/form-data" })" method="post" role="form">
+
+        @*<div class="">*@
+            @using (Html.BeginForm("AddStudent", "Student", null, FormMethod.Post,
+                      new { enctype = "multipart/form-data" }))
+            {
+                @*<fieldset>
+            <legend class="lang" key="basicInformation">Basic Information</legend>*@
+                <h4>Basic Information</h4>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="Name" class="lang" key="fullName">Full Name:</label>
+                            <input type="text" class="form-control" name="Name" id="Name" placeholder="Student's Full Name" required />
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="MotherName">Mother's Name:</label>
-                                    <input type="text" class="form-control" name="MotherName" id="MotherName" placeholder="Mother's Name" />
-
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="BirthDate">Date of Birth:</label>
-                                    <input type="date" class="form-control" name="Birthday" id="Birthday" required />
-
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="lang" key="fathersName" for="FatherName">Father's Name:</label>
+                            <input type="text" class="form-control" name="FatherName" id="FatherName" placeholder="Father's Name" required />
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="PresentAddress">Present Address:</label>
-                                    @*<textarea type="" rows="4" cols="50" class="form-control" name="PresentAddress" id="PresentAddress" required />*@
-                                    <textarea rows="2" cols="" class="form-control" name="PresentAddress" id="PresentAddress" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="MotherName">Mother's Name:</label>
+                            <input type="text" class="form-control" name="MotherName" id="MotherName" placeholder="Mother's Name" />
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="BirthDate">Date of Birth:</label>
+                            <input type="date" class="form-control" name="Birthday" id="Birthday" required />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="PresentAddress">Present Address:</label>
+                            @*<textarea type="" rows="4" cols="50" class="form-control" name="PresentAddress" id="PresentAddress" required />*@
+                            <textarea rows="2" cols="" class="form-control" name="PresentAddress" id="PresentAddress" required>
                                     </textarea>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="BirthDate">Permanent Address:</label>
-                                    @*<textarea type="" rows="4" cols="50" class="form-control" name="PermanentAddress" id="PermanentAddress" required />*@
-                                    <textarea rows="2" cols="" class="form-control" name="PermanentAddress" id="PermanentAddress" required>       
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="BirthDate">Permanent Address:</label>
+                            @*<textarea type="" rows="4" cols="50" class="form-control" name="PermanentAddress" id="PermanentAddress" required />*@
+                            <textarea rows="2" cols="" class="form-control" name="PermanentAddress" id="PermanentAddress" required>       
                                     </textarea>
-                                </div>
-                            </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="Contact1">Contact Number 1:</label>
-                                    <input type="number" class="form-control" name="Contact1" id="Contact1" required />
-
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="Contact2">Contact Number 2:</label>
-                                    <input type="number" class="form-control" name="Contact2" id="Contact2" required />
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="Gender">Gender:</label>
-                                    <select class="form-control" id="Gender" name="Gender" required>
-                                        <option selected disabled value="">Select Gender</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                    </select>
-
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-
-                            </div>
-                        </div>
-                    </fieldset>
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="Contact1">Contact Number 1:</label>
+                            <input type="number" class="form-control" name="Contact1" id="Contact1" required />
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="Contact2">Contact Number 2:</label>
+                            <input type="number" class="form-control" name="Contact2" id="Contact2" required />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="Gender">Gender:</label>
+                            <select class="form-control" id="Gender" name="Gender" required>
+                                <option selected disabled value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+
+                    </div>
+                </div>
+                @*</fieldset>*@
+                @*</div>*@
                 <br />
-                <div>
-                    <fieldset>
-                        <legend>Year Wise Information</legend>
-                    </fieldset>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="Roll">Class Roll:</label>
-                                <input type="number" class="form-control" name="Roll" id="Roll" placeholder="Roll" required />
+                @*<div>*@
+                @*<fieldset>
+            <legend>Year Wise Information</legend>*@
+                <h4>Year Wise Information</h4>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="Roll">Class Roll:</label>
+                            <input type="number" class="form-control" name="Roll" id="Roll" placeholder="Roll" required />
 
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="Year">Year:</label>
-                                @*<input type="number" class="form-control" name="Year" id="Year" placeholder="Year" required />*@
-                                <select class="form-control" id="Year" name="Year" required>
-                                    <option selected disabled value="">Select Year</option>
-                                    <option value="2019">2019</option>
-                                    <option value="2018">2018</option>
-                                </select>
-                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="Phone">Shift:</label>
-                                @*<input type="text" class="form-control" name="Shift" id="Shift" placeholder="Shift" required />*@
-                                <select class="form-control" id="Shift" name="Shift" required>
-                                    <option selected disabled value="">Select Shift</option>
-                                    <option value="common">Common</option>
-                                    <option value="day">Day</option>
-                                    <option value="morning">Morning</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="ClassId">Class:</label>
-                                @*<input type="number" class="form-control" name="ClassId" id="ClassId" placeholder="Class" required />*@
-                                @Html.DropDownList("ClassId", ViewData["ClassList"] as SelectList, "--Select One--", new { @class = "form-control" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="SectionId">Class Section:</label>
-                                @*<input type="number" class="form-control" name="SectionId" id="SectionId" placeholder="Section" required />*@
-                                @Html.DropDownList("SectionId", ViewData["SectionList"] as SelectList, "--Select One--", new { @class = "form-control" })
-
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="Residential">Residential Status:</label>
-                                @*<input type="text" class="form-control" name="Residential" id="Residential" placeholder="Residential" required />*@
-                                <select class="form-control" id="Residential" name="Residential" required>
-                                    <option selected disabled value="">Select Status</option>
-                                    <option value="Y">Yes</option>
-                                    <option value="N">No</option>
-                                </select>
-                            </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="Year">Year:</label>
+                            @*<input type="number" class="form-control" name="Year" id="Year" placeholder="Year" required />*@
+                            <select class="form-control" id="Year" name="Year" required>
+                                <option selected disabled value="">Select Year</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                            </select>
                         </div>
                     </div>
                 </div>
-                <br>
-                <div class="form-group text-center">
-                    <button type="submit" id="btnSubmit" class="btn btn-primary" style="min-width:150px;background-color:#1dbb2e;""><span class=""> </span> Submit</button>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="Residential">Residential Status:</label>
+                            @*<input type="text" class="form-control" name="Residential" id="Residential" placeholder="Residential" required />*@
+                            <select class="form-control" id="Residential" name="Residential" required>
+                                <option selected disabled value="">Select Status</option>
+                                <option value="Y">Yes</option>
+                                <option value="N">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="ClassId">Class:</label>
+                            @*<input type="number" class="form-control" name="ClassId" id="ClassId" placeholder="Class" required />*@
+                            @Html.DropDownList("ClassId", ViewData["ClassList"] as SelectList, "--Select One--", new { @class = "form-control" })
+                        </div>
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="SectionId">Class Section:</label>
+                            @*<input type="number" class="form-control" name="SectionId" id="SectionId" placeholder="Section" required />*@
+                            @Html.DropDownList("SectionId", ViewData["SectionList"] as SelectList, "--Select One--", new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="file">Select Image:</label>
+                            <input id="file" type="file" name="file" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <button type="submit" id="btnSubmit" class="btn btn-primary" style="min-width:150px;background-color:#1dbb2e;" "><span class=""> </span> Submit</button>
+                        </div>
+                    </div>
+                </div>
+
+                }
+                @*</fieldset>*@
+
+
+
+                @*</div>*@
+
                 <br />
-            </form>
+                <br />
+
+                @*</form>*@
+
+            </div>
 
         </div>
+
     </div>
 
-</div>
-
-@*<script src="~/Scripts/jquery-3.0.0.min.js"></script>
-    <script src="~/Scripts/CustomScripts/MultipleLanguage.js"></script>*@
+    @*<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+        <script src="~/Scripts/CustomScripts/MultipleLanguage.js"></script>*@
 

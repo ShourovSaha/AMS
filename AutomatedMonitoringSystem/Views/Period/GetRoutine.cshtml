@@ -1,5 +1,5 @@
 ﻿@*@model IEnumerable<AutomatedMonitoringSystem.Models.GetPeriodsByClassSectionShift_SP_Result>*@
-@model Dictionary<string, List<AutomatedMonitoringSystem.Models.GetPeriodsByClassSectionShift_SP_Result>>
+@model Dictionary<string, List<AutomatedMonitoringSystem.Models.GetRoutineByClassSectionShift_SP_Result>>
 
 @{
     /**/
@@ -96,22 +96,25 @@
                                 Day
                             </th>
                             <th>
-                                07:00 - 08:00
+                                07:00 am - 08:00 am
                             </th>
                             <th>
-                                08:00 - 09:00
+                                08:00 am - 09:00 am
                             </th>
                             <th>
-                                10:00 - 11:00
+                                09:00 am - 10:00 am
                             </th>
                             <th>
-                                11:00 - 12:00
+                                10:00 am - 11:00 am
                             </th>
                             <th>
-                                01:00 - 02:00
+                                11:00 am - 12:00 pm
                             </th>
                             <th>
-                                02:00 - 03:00
+                                12:00 am - 01:00 pm
+                            </th> 
+                            <th>
+                                01:00 pm - 02:00 pm
                             </th>
                         </tr>
                     </thead>
@@ -125,10 +128,15 @@
                                 @foreach (var j in i.Value)
                                 {
                                     <td>
-                                        @if (j != null)
+                                        @if (j.PeriodId > 0)
                                         {
                                             <p>@j.SubjectName</p>
-                                            <p>@j.SectionName</p>
+                                            <p>@j.FirstName @j.LastName</p>
+                                            <p>@j.TeacherId</p>
+                                        }
+                                        else
+                                        {
+                                            <p></p>
                                         }
                                     </td>
                                 }

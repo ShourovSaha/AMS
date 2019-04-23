@@ -10,7 +10,7 @@ namespace AutomatedMonitoringSystem.Models.ViewModels
         public int SubjectId { get; set; }
         public int ClassId { get; set; }
         public int SectionId { get; set; }
-        public string Shift { get; set; }
+        //public string Shift { get; set; }
         public int ExamTypeId { get; set; }
         public int Year { get; set; }
     }
@@ -20,7 +20,7 @@ namespace AutomatedMonitoringSystem.Models.ViewModels
         public int Roll { get; set; }
         public int ClassId { get; set; }
         public int SectionId { get; set; }
-        public string Shift { get; set; }
+        //public string Shift { get; set; }
         public int ExamTypeId { get; set; }
         public int Year { get; set; }
     }

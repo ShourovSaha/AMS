@@ -27,17 +27,17 @@ namespace AutomatedMonitoringSystem.Controllers.Web
         {
             ViewData["ClassList"] = new SelectList(GetClassListForDropDown(), "ClassId", "ClassWithShift");
             ViewData["SectionList"] = new SelectList(GetSectionListForDropDown(), "SectionId", "SectionName");
-            return View(new Dictionary<string, List<GetPeriodsByClassSectionShift_SP_Result>>());
+            return View(new Dictionary<string, List<GetRoutineByClassSectionShift_SP_Result>>());
         }
 
         [HttpPost]
         public ActionResult GetRoutine(string classId, string sectionid, string shift)
         {
             ResponseResult responseResult = new ResponseResult();
-            List<GetPeriodsByClassSectionShift_SP_Result> routineList = new List<GetPeriodsByClassSectionShift_SP_Result>();
+            List<GetRoutineByClassSectionShift_SP_Result> routineList = new List<GetRoutineByClassSectionShift_SP_Result>();
 
-            Dictionary<string, List<GetPeriodsByClassSectionShift_SP_Result>> pairs =
-                new Dictionary<string, List<GetPeriodsByClassSectionShift_SP_Result>>();
+            Dictionary<string, List<GetRoutineByClassSectionShift_SP_Result>> pairs =
+                new Dictionary<string, List<GetRoutineByClassSectionShift_SP_Result>>();
 
             WeeklyRoutinebyClassSectionShiftDayVM vm = new WeeklyRoutinebyClassSectionShiftDayVM()
             {
@@ -53,7 +53,7 @@ namespace AutomatedMonitoringSystem.Controllers.Web
 
                 if (responseResult.MessageCode == "Y")
                 {
-                    routineList = JsonConvert.DeserializeObject<List<GetPeriodsByClassSectionShift_SP_Result>>(responseResult.Content.ToString());
+                    routineList = JsonConvert.DeserializeObject<List<GetRoutineByClassSectionShift_SP_Result>>(responseResult.Content.ToString());
                     pairs = FormattingClassRoutine(routineList);
 
                     //TempData["msgAlert"] = "Y";
@@ -79,10 +79,10 @@ namespace AutomatedMonitoringSystem.Controllers.Web
 
 
         //Formatting routine 
-        public Dictionary<string, List<GetPeriodsByClassSectionShift_SP_Result>> FormattingClassRoutine(List<GetPeriodsByClassSectionShift_SP_Result> dataList)
+        public Dictionary<string, List<GetRoutineByClassSectionShift_SP_Result>> FormattingClassRoutine(List<GetRoutineByClassSectionShift_SP_Result> dataList)
         {
-            Dictionary<string, List<GetPeriodsByClassSectionShift_SP_Result>> pairs =
-                new Dictionary<string, List<GetPeriodsByClassSectionShift_SP_Result>>();
+            Dictionary<string, List<GetRoutineByClassSectionShift_SP_Result>> pairs =
+                new Dictionary<string, List<GetRoutineByClassSectionShift_SP_Result>>();
 
             //List<RoutineVM> rList = new List<RoutineVM>();
             //Dictionary<string, List<RoutineVM>> dList = new Dictionary<string, List<RoutineVM>>();
@@ -96,7 +96,7 @@ namespace AutomatedMonitoringSystem.Controllers.Web
             }
             else
             {
-                var returnData = FormateProcess(new List<GetPeriodsByClassSectionShift_SP_Result>());
+                var returnData = FormateProcess(new List<GetRoutineByClassSectionShift_SP_Result>());
                 pairs.Add("Saturday", returnData);
             }
 
@@ -108,19 +108,19 @@ namespace AutomatedMonitoringSystem.Controllers.Web
             }
             else
             {
-                var returnData = FormateProcess(new List<GetPeriodsByClassSectionShift_SP_Result>());
+                var returnData = FormateProcess(new List<GetRoutineByClassSectionShift_SP_Result>());
                 pairs.Add("Sunday", returnData); 
             }
 
             var mon_Obj = dataList.Where(a => a.Day == "Monday").ToList();
             if (mon_Obj.Count > 0)
             {
-                var returnData = FormateProcess(sun_Obj);
+                var returnData = FormateProcess(mon_Obj);
                 pairs.Add("Monday", returnData);
             }
             else
             {
-                var returnData = FormateProcess(new List<GetPeriodsByClassSectionShift_SP_Result>());
+                var returnData = FormateProcess(new List<GetRoutineByClassSectionShift_SP_Result>());
                 pairs.Add("Monday", returnData);
             }
 
@@ -132,7 +132,7 @@ namespace AutomatedMonitoringSystem.Controllers.Web
             }
             else
             {
-                var returnData = FormateProcess(new List<GetPeriodsByClassSectionShift_SP_Result>());
+                var returnData = FormateProcess(new List<GetRoutineByClassSectionShift_SP_Result>());
                 pairs.Add("Tuesday", returnData);
             }
 
@@ -144,7 +144,7 @@ namespace AutomatedMonitoringSystem.Controllers.Web
             }
             else
             {
-                var returnData = FormateProcess(new List<GetPeriodsByClassSectionShift_SP_Result>());
+                var returnData = FormateProcess(new List<GetRoutineByClassSectionShift_SP_Result>());
                 pairs.Add("Wednesday", returnData);
             }
 
@@ -156,7 +156,7 @@ namespace AutomatedMonitoringSystem.Controllers.Web
             }
             else
             {
-                var returnData = FormateProcess(new List<GetPeriodsByClassSectionShift_SP_Result>());
+                var returnData = FormateProcess(new List<GetRoutineByClassSectionShift_SP_Result>());
                 pairs.Add("Thrusday", returnData);
             }
 
@@ -168,17 +168,17 @@ namespace AutomatedMonitoringSystem.Controllers.Web
             }
             else
             {
-                var returnData = FormateProcess(new List<GetPeriodsByClassSectionShift_SP_Result>());
+                var returnData = FormateProcess(new List<GetRoutineByClassSectionShift_SP_Result>());
                 pairs.Add("Friday", returnData);
             }
             return pairs;
         }
 
         //Weekly Day wise data formatting to show routine 
-        public List<GetPeriodsByClassSectionShift_SP_Result> FormateProcess(List<GetPeriodsByClassSectionShift_SP_Result> dataList)
+        public List<GetRoutineByClassSectionShift_SP_Result> FormateProcess(List<GetRoutineByClassSectionShift_SP_Result> dataList)
         {
-            List<GetPeriodsByClassSectionShift_SP_Result> dList =
-                new List<GetPeriodsByClassSectionShift_SP_Result>();
+            List<GetRoutineByClassSectionShift_SP_Result> dList =
+                new List<GetRoutineByClassSectionShift_SP_Result>();
 
             if (dataList != null)
             {
@@ -190,23 +190,23 @@ namespace AutomatedMonitoringSystem.Controllers.Web
                 var p6_Obj = dataList.Where(a => a.StartTime == "12:00:00").SingleOrDefault();
                 var p7_Obj = dataList.Where(a => a.StartTime == "13:00:00").SingleOrDefault();
 
-                dList.Add(p1_Obj != null ? p1_Obj : new GetPeriodsByClassSectionShift_SP_Result());
-                dList.Add(p2_Obj != null ? p2_Obj : new GetPeriodsByClassSectionShift_SP_Result());
-                dList.Add(p3_Obj != null ? p3_Obj : new GetPeriodsByClassSectionShift_SP_Result());
-                dList.Add(p4_Obj != null ? p4_Obj : new GetPeriodsByClassSectionShift_SP_Result());
-                dList.Add(p5_Obj != null ? p5_Obj : new GetPeriodsByClassSectionShift_SP_Result());
-                dList.Add(p6_Obj != null ? p6_Obj : new GetPeriodsByClassSectionShift_SP_Result());
-                dList.Add(p7_Obj != null ? p7_Obj : new GetPeriodsByClassSectionShift_SP_Result());
+                dList.Add(p1_Obj != null ? p1_Obj : new GetRoutineByClassSectionShift_SP_Result());
+                dList.Add(p2_Obj != null ? p2_Obj : new GetRoutineByClassSectionShift_SP_Result());
+                dList.Add(p3_Obj != null ? p3_Obj : new GetRoutineByClassSectionShift_SP_Result());
+                dList.Add(p4_Obj != null ? p4_Obj : new GetRoutineByClassSectionShift_SP_Result());
+                dList.Add(p5_Obj != null ? p5_Obj : new GetRoutineByClassSectionShift_SP_Result());
+                dList.Add(p6_Obj != null ? p6_Obj : new GetRoutineByClassSectionShift_SP_Result());
+                dList.Add(p7_Obj != null ? p7_Obj : new GetRoutineByClassSectionShift_SP_Result());
             }
             else
             {
-                dList.Add(new GetPeriodsByClassSectionShift_SP_Result());
-                dList.Add(new GetPeriodsByClassSectionShift_SP_Result());
-                dList.Add(new GetPeriodsByClassSectionShift_SP_Result());
-                dList.Add(new GetPeriodsByClassSectionShift_SP_Result());
-                dList.Add(new GetPeriodsByClassSectionShift_SP_Result());
-                dList.Add(new GetPeriodsByClassSectionShift_SP_Result());
-                dList.Add(new GetPeriodsByClassSectionShift_SP_Result());
+                dList.Add(new GetRoutineByClassSectionShift_SP_Result());
+                dList.Add(new GetRoutineByClassSectionShift_SP_Result());
+                dList.Add(new GetRoutineByClassSectionShift_SP_Result());
+                dList.Add(new GetRoutineByClassSectionShift_SP_Result());
+                dList.Add(new GetRoutineByClassSectionShift_SP_Result());
+                dList.Add(new GetRoutineByClassSectionShift_SP_Result());
+                dList.Add(new GetRoutineByClassSectionShift_SP_Result());
             }
             return dList;
         }

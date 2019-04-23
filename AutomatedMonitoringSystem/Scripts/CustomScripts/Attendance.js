@@ -111,14 +111,14 @@ function GetAttandanceClassSactionWise() {
 function DataInitialization() {
     var ClassId = $("#ClassId").val();
     var SectionId = $("#SectionId").val();
-    var Shift = $("#Shift").val();
+    //var Shift = $("#Shift").val();
     var Date = $("#Date").val();
 
 
     studentAttendanceByClassVM = {
         ClassId: ClassId,
         SectionId: SectionId,
-        Shift: Shift,
+        //Shift: Shift,
         Date: Date
     }
 
@@ -128,7 +128,7 @@ function DataInitialization() {
 function DataInitializationWithRoll() {
     var ClassId = $("#ClassId").val();
     var SectionId = $("#SectionId").val();
-    var Shift = $("#Shift").val();
+    //var Shift = $("#Shift").val();
     var Date = $("#Date").val();
     var Roll = $("#Roll").val();
 
@@ -148,13 +148,13 @@ function InputValidation() {
 
     var ClassId = $("#ClassId").val();
     var SectionId = $("#SectionId").val();
-    var Shift = $("#Shift").val();
+    //var Shift = $("#Shift").val();
     var Date = $("#Date").val();
     var Roll = $("#Roll").val();
 
     if (ClassId == null || ClassId == "undifined" || ClassId == "" ||
         SectionId == null || SectionId == "undifined" || SectionId == "" ||
-        Shift == null || Shift == "undifined" || Shift == "" ||
+        //Shift == null || Shift == "undifined" || Shift == "" ||
         Date == null || Date == "undifined" || Date == "") {
         //alert("Input data correctly!");
         return 0;

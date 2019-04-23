@@ -38,13 +38,13 @@
                     <fieldset>
                         @*<legend>Subject Assign</legend>*@
                         @*<div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="Roll">Roll Number:</label>
-                                <input id="Roll" type="number" name="Roll" placeholder="Student's Roll Number">
-                            </div>
-                        </div>
-                    </div>*@
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="Roll">Roll Number:</label>
+                                        <input id="Roll" type="number" name="Roll" placeholder="Student's Roll Number">
+                                    </div>
+                                </div>
+                            </div>*@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -80,19 +80,20 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="Shift">Shift:</label>
-                                    <select class="form-control" id="Shift" name="Shift" required>
-                                        <option selected disabled value="">Select Shift</option>
-                                        <option value="Common">Common</option>
-                                        <option value="Day">Day</option>
-                                        <option value="Morning">Morning</option>
-                                    </select>
+                                    <label for="Year">Year:</label>
+                                    @Html.DropDownList("Year", ViewData["YearList"] as SelectList, "--Select One--", new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="Year">Year:</label>
-                                    @Html.DropDownList("Year", ViewData["YearList"] as SelectList, "--Select One--", new { @class = "form-control" })
+
+                                    @*<label for="Shift">Shift:</label>
+                                        <select class="form-control" id="Shift" name="Shift" required>
+                                            <option selected disabled value="">Select Shift</option>
+                                            <option value="Common">Common</option>
+                                            <option value="Day">Day</option>
+                                            <option value="Morning">Morning</option>
+                                        </select>*@
                                 </div>
                                 <div class="form-group">
 
@@ -117,9 +118,9 @@
                         <tbody>
                             @foreach (var i in Model)
                             {
-                            <tr>
-                                <td><p>Exam Subject: @i.SubjectName</p></td>
-                            </tr>
+                                <tr>
+                                    <td><p>Exam Subject: @i.SubjectName</p></td>
+                                </tr>
                                 <tr>
                                     <td><p>Exam taken on: @i.Date</p></td>
                                 </tr>
