@@ -38,16 +38,41 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="Title">First Name:</label>
+                                    <label for="ClassId" class="lang" key="class">Class:</label>
+                                    @Html.DropDownList("ClassId", ViewData["ClassList"] as SelectList, "--Select One--", new { @class = "form-control", required = "required" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="SectionId" class="lang" key="classSection">Section:</label>
+                                    @Html.DropDownList("SectionId", ViewData["SectionList"] as SelectList, "--Select One--", new { @class = "form-control", required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="SubjectId">Subject:</label>
+                                    @Html.DropDownList("SubjectId", new SelectList(" "), "--Select One--", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="Title">Notice Title:</label>
                                     <input type="text" class="form-control" name="Title" id="Title" placeholder="Title" required />
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="PostedForTime">Posted For Time:</label>
                                     <input type="datetime-local" class="form-control" name="PostedForTime" id="PostedForTime" placeholder="Posted For Time" required />
                                 </div>
+                            </div>
+
+                            <div class="col-sm-6">
+
                             </div>
                         </div>
                         <div class="row">
@@ -55,10 +80,11 @@
                                 <div class="form-group">
                                     <label for="Message">Message:</label>
                                     @Html.TextArea("Message", new {
-                                       rows = "20",
-                                       style = "resize:none;width:400px;",
-                                       placeholder = "Write your message here.",
-                                       @class = "form-control input-lg textarea-editor"
+                                   rows = "20",
+                                   style = "resize:none;width:400px;",
+                                   placeholder = "Write your message here.",
+                                   @class = "form-control input-lg textarea-editor",
+                                   required = "required"
                                })
                                 </div>
                             </div>
@@ -89,6 +115,7 @@
     </script>
     <script src="~/Scripts/CustomScripts/script-custom-editor.js"></script>
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
+    <script src="~/Scripts/CustomScripts/CommonCascadingDropDown.js"></script>
 }
 @*<script src="~/Scripts/jquery-3.0.0.min.js"></script>
     <script src="~/Scripts/CustomScripts/MultipleLanguage.js"></script>*@

@@ -26,30 +26,39 @@ namespace AutomatedMonitoringSystem.Controllers.API
         public ResponseResult AddNotice(NoticeVM noticeVM)//Add Or Update Notice 
         {
             ResponseResult responseResult = new ResponseResult();
-            System.Data.Entity.Core.Objects.ObjectParameter MSG_Code =
-                new System.Data.Entity.Core.Objects.ObjectParameter("MSG_Code", typeof(string));
-            System.Data.Entity.Core.Objects.ObjectParameter MSG =
-                new System.Data.Entity.Core.Objects.ObjectParameter("MSG", typeof(string));
+            //System.Data.Entity.Core.Objects.ObjectParameter MSG_Code =
+            //    new System.Data.Entity.Core.Objects.ObjectParameter("MSG_Code", typeof(string));
+            //System.Data.Entity.Core.Objects.ObjectParameter MSG =
+            //    new System.Data.Entity.Core.Objects.ObjectParameter("MSG", typeof(string));
             try
             {
-                _dbContext.AddNotice_SP(noticeVM.NoticeId, noticeVM.PostedBy, noticeVM.MaskingId, noticeVM.Message,
-                                        noticeVM.Title, noticeVM.PostedDate, noticeVM.UpdatedDate,
-                                        noticeVM.PostedForTime, MSG_Code, MSG);
+                int subjectMuskingId = GetSubjectMuskingId(noticeVM.SubjectId);
+                Notice noticeObj = new Notice()
+                {
+                    MaskingId = subjectMuskingId,
+                    Message = noticeVM.Message,
+                    PostedBy = noticeVM.PostedBy,
+                    PostedDate = noticeVM.PostedDate,
+                    PostedForTime = noticeVM.PostedForTime,
+                    Title = noticeVM.Title,
+                    UpdatedDate = noticeVM.UpdatedDate
+                };
+                _dbContext.Notices.Add(noticeObj);
+                _dbContext.SaveChanges();
 
-                responseResult.MessageCode = MSG_Code.Value.ToString();
-                responseResult.SystemMessage = MSG.Value.ToString();
+                responseResult.MessageCode = MessageCode.Y.ToString();
+                responseResult.SystemMessage = "Posted Successfully.";
                 responseResult.Content = null;
             }
             catch (Exception ex)
             {
-                responseResult.MessageCode = MSG_Code.ToString();
-                responseResult.SystemMessage = MSG.Value.ToString();
+                responseResult.MessageCode = MessageCode.N.ToString();
+                responseResult.SystemMessage = ex.Message;
                 responseResult.Content = null;
                 //throw ex;
             }
             return responseResult;
         }
-
 
         // POST: api/Notice/NoticeList
         [HttpPost]
@@ -83,7 +92,12 @@ namespace AutomatedMonitoringSystem.Controllers.API
             return responseResult;
         }
 
-
+        public int GetSubjectMuskingId(int subjectId)
+        {
+            return _dbContext.Subjects.Where(a => a.SubjectId == subjectId)
+                                .Select(a => a.MaskingSubjectId)
+                                .FirstOrDefault();
+        }
 
 
         // GET: api/Notice

@@ -174,7 +174,7 @@
                         <div class="form-group">
                             <label for="SectionId">Class Section:</label>
                             @*<input type="number" class="form-control" name="SectionId" id="SectionId" placeholder="Section" required />*@
-                            @Html.DropDownList("SectionId", ViewData["SectionList"] as SelectList, "--Select One--", new { @class = "form-control" })
+                            @Html.DropDownList("SectionId", ViewData["SectionList"] as SelectList, "--Select One--", new { @class = "form-control", required = "required" })
 
                         </div>
                     </div>

@@ -17,7 +17,7 @@ namespace AutomatedMonitoringSystem.Controllers.Web
 {
     public class NoticesController : BaseController
     {
-        private readonly AMSDBEntities db = null;
+        //private readonly AMSDBEntities db = null;
         private ApiRequest _apiRequest = null;
 
         public NoticesController()
@@ -28,17 +28,20 @@ namespace AutomatedMonitoringSystem.Controllers.Web
 
         public ActionResult AddNotice()
         {
+            ViewData["ClassList"] = new SelectList(GetClassListForDropDown(), "ClassId", "ClassWithShift");
+            ViewData["SectionList"] = new SelectList(GetSectionListForDropDown(), "SectionId", "SectionName");
             return View();
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult AddNotice(string Title, string Message, DateTime PostedForTime)
+        public ActionResult AddNotice(int subjectId, int classId, int sectionId, string Title, string Message, DateTime PostedForTime)
         {           
             ResponseResult responseResult = new ResponseResult();
             NoticeVM noticeVM = new NoticeVM()
             {
-                MaskingId = 0,//Admin's masking id is 0.
-                NoticeId = 0,
+                ClassId = classId,
+                SectionId = sectionId,
+                SubjectId = subjectId,
                 Title = Title,
                 Message = Message,
                 PostedBy = (long)Session["LogInUserPhone"],
@@ -69,6 +72,8 @@ namespace AutomatedMonitoringSystem.Controllers.Web
                 TempData["msgAlert"] = "N";
                 TempData["msgAlertDetails"] = ex.Message.ToString();
             }
+            ViewData["ClassList"] = new SelectList(GetClassListForDropDown(), "ClassId", "ClassWithShift");
+            ViewData["SectionList"] = new SelectList(GetSectionListForDropDown(), "SectionId", "SectionName");
             return View();
         }
 

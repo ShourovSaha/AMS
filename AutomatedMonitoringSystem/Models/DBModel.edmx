@@ -80,7 +80,7 @@ warning 6002: The table/view 'AMSDB.dbo.Message' does not have a primary key def
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PostedBy" Type="bigint" Nullable="false" />
           <Property Name="MaskingId" Type="int" Nullable="false" />
           <Property Name="Message" Type="nvarchar" MaxLength="1000" />
@@ -836,7 +836,7 @@ warning 6002: The table/view 'AMSDB.dbo.vw_PeriodDetailsWithTeacherInfo' does no
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" />
-          <Property Name="Location" Type="String" />
+          <Property Name="Location" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="Extention" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>

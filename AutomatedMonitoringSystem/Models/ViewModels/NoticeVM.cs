@@ -7,9 +7,10 @@ namespace AutomatedMonitoringSystem.Models.ViewModels
 {
     public class NoticeVM
     {
-        public long NoticeId { get; set; }
+        public int ClassId { get; set; }
+        public int SectionId { get; set; }
+        public int SubjectId { get; set; }
         public long PostedBy { get; set; }
-        public int MaskingId { get; set; }
         public string Message { get; set; }
         public string Title { get; set; }
         public DateTime PostedDate { get; set; }

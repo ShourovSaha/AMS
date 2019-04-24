@@ -51,13 +51,13 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="ClassId">Class:</label>
-                                    @Html.DropDownList("ClassId", ViewData["ClassList"] as SelectList, "--Select One--", new { @class = "form-control" })
+                                    @Html.DropDownList("ClassId", ViewData["ClassList"] as SelectList, "--Select One--", new { @class = "form-control", required = "required" })
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="SectionId">Section:</label>
-                                    @Html.DropDownList("SectionId", ViewData["SectionList"] as SelectList, "--Select One--", new { @class = "form-control" })
+                                    @Html.DropDownList("SectionId", ViewData["SectionList"] as SelectList, "--Select One--", new { @class = "form-control", required = "required" })
                                 </div>
                             </div>
                         </div>
