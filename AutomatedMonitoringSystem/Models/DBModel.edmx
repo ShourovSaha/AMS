@@ -59,9 +59,9 @@ warning 6002: The table/view 'AMSDB.dbo.ExamType' does not have a primary key de
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="bigint" Nullable="false" />
-          <Property Name="Location" Type="varbinary" MaxLength="100" Nullable="false" />
+          <Property Name="Location" Type="varchar(max)" />
           <Property Name="Extention" Type="nchar" MaxLength="10" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'AMSDB.dbo.Message' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -836,9 +836,9 @@ warning 6002: The table/view 'AMSDB.dbo.vw_PeriodDetailsWithTeacherInfo' does no
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" />
-          <Property Name="Location" Type="Binary" MaxLength="100" FixedLength="false" Nullable="false" />
+          <Property Name="Location" Type="String" />
           <Property Name="Extention" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Notice">
           <Key>

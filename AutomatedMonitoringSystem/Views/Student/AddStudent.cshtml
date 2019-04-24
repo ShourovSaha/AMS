@@ -33,16 +33,12 @@
             @*==========================*@
             <hr>
 
-
-
-
-            }
             @*<form action="@Html.Action("AddStudent", "Student", new { enctype = "multipart/form-data" })" method="post" role="form">
 
         @*<div class="">*@
             @using (Html.BeginForm("AddStudent", "Student", null, FormMethod.Post,
                       new { enctype = "multipart/form-data" }))
-            {
+            { 
                 @*<fieldset>
             <legend class="lang" key="basicInformation">Basic Information</legend>*@
                 <h4>Basic Information</h4>
@@ -185,11 +181,21 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="file">Select Image:</label>
-                            <input id="file" type="file" name="file" class="form-control" />
+                            <input id="file" type="file" name="file" class="form-control" required/>
                         </div>
                     </div>
                 </div>
                 <div class="row">
+                    <div class=""></div>
+                    <div class="col-sm-12">
+                        <button type="submit" id="btnSubmit" class="btn btn-primary">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            }
+                
+                @*<div class="row">
                     <div class="col-sm-6">
 
                     </div>
@@ -198,9 +204,8 @@
                             <button type="submit" id="btnSubmit" class="btn btn-primary" style="min-width:150px;background-color:#1dbb2e;" "><span class=""> </span> Submit</button>
                         </div>
                     </div>
-                </div>
-
-                }
+                </div>*@
+                
                 @*</fieldset>*@
 
 
@@ -211,9 +216,9 @@
                 <br />
 
                 @*</form>*@
-
+            
             </div>
-
+        
         </div>
 
     </div>

@@ -7,8 +7,8 @@ using System.Web;
 using Newtonsoft.Json;
 using System.Web.Mvc;
 using AutomatedMonitoringSystem.CommonClass;
-using AutomatedMonitoringSystem.Models.ViewModels.StudentVM;
 using AutomatedMonitoringSystem.Models.ViewModels;
+using System.IO;
 
 namespace AutomatedMonitoringSystem.Controllers.Web
 {
@@ -41,7 +41,7 @@ namespace AutomatedMonitoringSystem.Controllers.Web
         [HttpPost]
         public ActionResult AddStudent(string Name, DateTime Birthday, string FatherName, string MotherName,
                     string PresentAddress, string PermanentAddress, string Contact1, string Contact2,
-                    int Roll, int Year,/* string Shift,*/ long ClassId, int SectionId, string Residential, 
+                    int Roll, int Year,/* string Shift,*/ long ClassId, int SectionId, string Residential,
                     HttpPostedFileBase file)
         {
             ResponseResult responseResult = new ResponseResult();
@@ -64,18 +64,28 @@ namespace AutomatedMonitoringSystem.Controllers.Web
                 Residential = Residential
             };
 
+            ImageVM imageVM = new ImageVM()
+            {
+                Extention = Path.GetExtension(file.FileName),
+                Name = Path.GetFileNameWithoutExtension(file.FileName),
+                Location = "~/Content/Images/StudentImage/" + file.FileName
+            };
+
+            SaveStudentVM saveStudent = new SaveStudentVM()
+            {
+                StudentVM = studentVM,
+                ImageVM = imageVM
+            };
+
             try
             {
                 if (file != null)
-                {
-                    file.SaveAs(HttpContext.Server.MapPath("~Content/Images/StudentImage")
+                {//keep image file in a folder
+                    file.SaveAs(HttpContext.Server.MapPath("~/Content/Images/StudentImage/")
                                                           + file.FileName);
-                    //img.ImagePath = file.FileName;
                 }
 
-
-
-                var res = _apiRequest.HttpPostRequest(studentVM, "api/Student/AddStudent");
+                var res = _apiRequest.HttpPostRequest(saveStudent, "api/Student/AddStudent");
                 string apiResponse = res.ToString();
                 responseResult = JsonConvert.DeserializeObject<ResponseResult>(apiResponse);
 
@@ -83,7 +93,7 @@ namespace AutomatedMonitoringSystem.Controllers.Web
                 {
                     TempData["msgAlert"] = "Y";
                     TempData["msgAlertDetails"] = responseResult.SystemMessage;
-                    
+
                 }
                 else
                 {
@@ -102,6 +112,36 @@ namespace AutomatedMonitoringSystem.Controllers.Web
             ViewData["SectionList"] = new SelectList(GetSectionListForDropDown(), "SectionId", "SectionName");
             return RedirectToAction("AddStudent");
         }
+
+
+
+        //private void SaveImage(HttpPostedFileBase file, long imageId)
+        //{
+        //    try
+        //    {
+        //        string fileNameWithOutExtention = Path.GetFileNameWithoutExtension(file.FileName);
+        //        string fileExtention = Path.GetExtension(file.FileName);
+        //        string imgPath = "~/Content/Images/StudentImage/" + file.FileName;
+
+        //        Image imageObj = new Image()
+        //        {
+        //            Id = imageId,//Student Id
+        //            Location = imgPath,
+        //            Extention = fileExtention,
+        //            Name = fileNameWithOutExtention
+        //        };
+
+        //        _dbContext.Images.Add(imageObj);
+        //        _dbContext.SaveChanges();
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        TempData["msgAlert"] = "N";
+        //        TempData["msgAlertDetails"] = ex.Message.ToString();
+        //    }
+        //}
+
 
 
 

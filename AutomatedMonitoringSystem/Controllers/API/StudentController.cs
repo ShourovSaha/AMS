@@ -1,12 +1,13 @@
 ﻿using AutomatedMonitoringSystem.CommonClass;
 using AutomatedMonitoringSystem.Models;
 using AutomatedMonitoringSystem.Models.ViewModels;
-using AutomatedMonitoringSystem.Models.ViewModels.StudentVM;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace AutomatedMonitoringSystem.Controllers.API
@@ -25,7 +26,7 @@ namespace AutomatedMonitoringSystem.Controllers.API
         // POST: api/Student/AddStudent
         [HttpPost]
         [Route("AddStudent")]
-        public ResponseResult AddStudent(StudentVM studentVM)
+        public ResponseResult AddStudent(SaveStudentVM model)
         {
             ResponseResult responseResult = new ResponseResult();
             try
@@ -34,26 +35,29 @@ namespace AutomatedMonitoringSystem.Controllers.API
                 StudentBasic studentBasic = new StudentBasic()
                 {
                     StudentId = sId,
-                    Name = studentVM.Name,
-                    Birthday = studentVM.Birthday,
-                    FatherName = studentVM.FatherName,
-                    MotherName = studentVM.MotherName,
-                    PresentAddress = studentVM.PresentAddress,
-                    PermanentAddress = studentVM.PermanentAddress,
-                    Contact1 = studentVM.Contact1,
-                    Contact2 = studentVM.Contact2
+                    Name = model.StudentVM.Name,
+                    Birthday = model.StudentVM.Birthday,
+                    FatherName = model.StudentVM.FatherName,
+                    MotherName = model.StudentVM.MotherName,
+                    PresentAddress = model.StudentVM.PresentAddress,
+                    PermanentAddress = model.StudentVM.PermanentAddress,
+                    Contact1 = model.StudentVM.Contact1,
+                    Contact2 = model.StudentVM.Contact2
                 };
 
                 StudentInfo studentInfo = new StudentInfo()
                 {
                     StudentId = sId,
-                    Roll = studentVM.Roll,
-                    ClassId = studentVM.ClassId,
-                    SectionId = studentVM.SectionId,
-                    Shift = GetShiftByClassId(studentVM.ClassId),
-                    Year = studentVM.Year,
-                    Residential = studentVM.Residential
+                    Roll = model.StudentVM.Roll,
+                    ClassId = model.StudentVM.ClassId,
+                    SectionId = model.StudentVM.SectionId,
+                    Shift = GetShiftByClassId(model.StudentVM.ClassId),
+                    Year = model.StudentVM.Year,
+                    Residential = model.StudentVM.Residential
                 };
+
+                SaveImage(model.ImageVM, sId);
+
 
                 _dbContext.StudentBasics.Add(studentBasic);
                 _dbContext.StudentInfoes.Add(studentInfo);
@@ -71,6 +75,31 @@ namespace AutomatedMonitoringSystem.Controllers.API
             }
             return responseResult;
         }
+
+
+
+        private void SaveImage(ImageVM file, long imageId)
+        {
+            try
+            {
+                Image imageObj = new Image()
+                {
+                    Id = imageId,//Student Id
+                    Location = file.Location,
+                    Extention = file.Extention,
+                    Name = file.Name
+                };
+
+                _dbContext.Images.Add(imageObj);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+
 
 
         public string GetShiftByClassId(long classId)

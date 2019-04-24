@@ -237,7 +237,6 @@
     <Compile Include="Models\Image.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ImageVM.cs" />
     <Compile Include="Models\Message.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -293,14 +292,16 @@
     <Compile Include="Models\ViewModels\AssignTeachersSubjectWithPeriodVM.cs" />
     <Compile Include="Models\ViewModels\ClassVM.cs" />
     <Compile Include="Models\ViewModels\GetExamResultVM.cs" />
+    <Compile Include="Models\ViewModels\ImageVM.cs" />
     <Compile Include="Models\ViewModels\NoticeDetailsVM.cs" />
     <Compile Include="Models\ViewModels\NoticeVM.cs" />
     <Compile Include="Models\ViewModels\DayVM.cs" />
     <Compile Include="Models\ViewModels\PeriodVM.cs" />
+    <Compile Include="Models\ViewModels\SaveStudentVM.cs" />
     <Compile Include="Models\ViewModels\SectionVM.cs" />
     <Compile Include="Models\ViewModels\StudentAttendanceByClassVM.cs" />
     <Compile Include="Models\ViewModels\StudentAttendanceByRollVM.cs" />
-    <Compile Include="Models\ViewModels\StudentVM\StudentVM.cs" />
+    <Compile Include="Models\ViewModels\StudentVM.cs" />
     <Compile Include="Models\ViewModels\SubjectByClassSectionVM.cs" />
     <Compile Include="Models\ViewModels\SubjectVM.cs" />
     <Compile Include="Models\ViewModels\TeacherVM.cs" />
@@ -445,7 +446,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\StudentImage\" />
-    <Folder Include="Models\ViewModels\UserVM\" />
+    <Folder Include="Models\ViewModels\StudentVM\" />
     <Folder Include="Repositories\ApiRepositories\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Notice\" />

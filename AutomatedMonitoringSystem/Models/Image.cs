@@ -15,7 +15,7 @@ namespace AutomatedMonitoringSystem.Models
     public partial class Image
     {
         public long Id { get; set; }
-        public byte[] Location { get; set; }
+        public string Location { get; set; }
         public string Extention { get; set; }
         public string Name { get; set; }
     }
